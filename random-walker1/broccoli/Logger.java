@@ -17,9 +17,9 @@ public class Logger
 
     public Logger(String name)
     {
-        messageList = new ArrayList<>();
+        this.messageList = new ArrayList<>();
         try {
-            writer = new BufferedWriter(new FileWriter(name + ".csv", false));
+            this.writer = new BufferedWriter(new FileWriter(name + ".csv", false));
         } catch (IOException io) {
             System.out.println(io.getMessage());
         }
@@ -36,10 +36,10 @@ public class Logger
         try {
             for (String string : this.messageList) {
                 // Make one line for the file
-                writer.write(string);
+                this.writer.write(string);
 
             }
-            writer.close();
+            this.writer.close();
         } catch (IOException io) {
             System.out.println(io.getMessage());
         }
