@@ -20,7 +20,7 @@ public class Simulator
 
      //TODO
     // Lists of animals in the field.
-    private List<Actor> actor;
+    private List<Particle> particle;
     // The current state of the field.
     private Grid grid;
     // The current step of the simulation.
@@ -54,7 +54,7 @@ public class Simulator
         
         // TODO
         // Create a new ArrayList of animals.
-        actor = new ArrayList<>();
+        particle = new ArrayList<>();
         
         // Create a new field with depth and width.
         grid = new Grid(depth, width);
@@ -104,20 +104,20 @@ public class Simulator
     public void simulateOneStep()
     {
         
-        /*
+        
         step++;
-        List<Actor> newAnimal = new ArrayList<>();
-        for(Iterator<Actor> it = actor.iterator(); it.hasNext(); ) {
-            Actor actor = it.next();
-            actor.act(newAnimal);
-            if(! actor.isAlive()) {
+        List<Particle> newParticle = new ArrayList<>();
+        for(Iterator<Particle> it = particle.iterator(); it.hasNext(); ) {
+            Particle particle = it.next();
+            particle.act(newParticle);
+            if(! particle.isInAction()) {
                 it.remove();
             }
         }
   
-        actor.addAll(newAnimal);
+        particle.addAll(newParticle);
         view.showStatus(step, grid);
-      */
+      
     /*   
         // Checking if the field is valid.
             if(isFieldValid())
@@ -145,7 +145,7 @@ public class Simulator
     public void reset()
     {
         step = 0;
-        actor.clear();
+        particle.clear();
         //populationGenerator.populate();
                 
         // Show the starting state in the view.
@@ -157,7 +157,7 @@ public class Simulator
     /*
     private boolean isFieldValid()
     {
-       // ArrayList<Actor> animalsInField = getAnimalsInField();
+       //ArrayList<Actor> animalsInField = getAnimalsInField();
         boolean result = true;
         
         for(Actor actor: animalsInField)
@@ -170,6 +170,7 @@ public class Simulator
         return result;
     }
     
+
     //Checking the field List
     private boolean isListValid()
     {
@@ -188,11 +189,11 @@ public class Simulator
         }
         return result;
     }
-    
+    */
     //Checking through the field and add it into a list.
-    private ArrayList<Animal> getAnimalsInField()
+    private ArrayList<Particle> getParticleInField()
     {
-        ArrayList<Animal> animalList = new ArrayList<>();
+        ArrayList<Particle> particleList = new ArrayList<>();
         
         int width = grid.getWidth();
         int depth = grid.getDepth();
@@ -204,14 +205,14 @@ public class Simulator
                 Object objSelected = grid.getObjectAt(new Location(iDepth, iWidth));
                 if(objSelected != null)
                 {
-                    if(objSelected instanceof Animal)
+                    if(objSelected instanceof Particle)
                     {
-                        animalList.add((Animal) objSelected);
+                        particleList.add((Particle) objSelected);
                     }
                 }
             }
         }
-        return animalList;
+        return particleList;
     }
-    */
+    
 }
