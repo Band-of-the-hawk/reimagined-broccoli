@@ -2,7 +2,7 @@ package broccoli;
 
 /**
  *
- * @author ThomasSTodal
+ * @author ThomasS Todal
  */
 public class Main
 {
