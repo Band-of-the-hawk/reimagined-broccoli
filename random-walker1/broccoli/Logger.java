@@ -14,7 +14,10 @@ public class Logger
     private BufferedWriter writer;
     private final ArrayList<String> messageList;
 
-
+/**
+ * 
+ * @param name 
+ */
     public Logger(String name)
     {
         this.messageList = new ArrayList<>();
@@ -26,11 +29,18 @@ public class Logger
 
     }
     
+    /**
+     * 
+     * @param message 
+     */
     public void addMessage(String message)
     {
         this.messageList.add(message + "\n");
     }
 
+    /**
+     * 
+     */
     public void writeToFile()
     {
         try {
