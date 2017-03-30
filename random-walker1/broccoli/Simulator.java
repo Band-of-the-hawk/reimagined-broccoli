@@ -98,8 +98,6 @@ public class Simulator
     /**
      * Run the simulation from its current state for a single step.
      * Iterate over the whole field updating the state of each
-     * fox and rabbit.
-     * TODO
      */
     public void simulateOneStep()
     {
