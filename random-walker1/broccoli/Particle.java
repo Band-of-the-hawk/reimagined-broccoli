@@ -14,6 +14,7 @@ public abstract class Particle {
     
     private Grid grid;
     
+    // act
     public abstract void act(List<Particle> newParticle);
     
     protected Particle(Grid grid, Location location)
