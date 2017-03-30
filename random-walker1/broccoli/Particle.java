@@ -1,12 +1,11 @@
 package broccoli;
 
+import java.util.List;
+
 /**
  *
  * @author Vinh
  */
-<<<<<<< HEAD
-public class Particle {
-=======
 public abstract class Particle {
     
     private boolean inAction;
@@ -39,6 +38,14 @@ public abstract class Particle {
     {
         return location;
     }
->>>>>>> 9c68eaf7a066acd79633e4e31b90c6a95434e4e9
     
+    protected void setLocation(Location center)
+    {
+        if(location != null)
+        {
+            //Add particle
+        }
+        location = center;
+        grid.place(this, center);
+    }
 }
