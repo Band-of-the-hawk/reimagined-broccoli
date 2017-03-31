@@ -1,5 +1,6 @@
 package broccoli;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,6 +19,8 @@ public class Simulator
     private static final int DEFAULT_Y = 10;
     // The default height of the grid.
     private static final int DEFAULT_Z = 10;
+    
+    
 
      //TODO
     // Lists of animals in the field.
@@ -27,7 +30,7 @@ public class Simulator
     // The current step of the simulation.
     private int step;
     // A graphical view of the simulation.
-    //private SimulatorView view;
+    private SimulatorView view;
     // The current state of the pupulation
     
     /**
@@ -70,7 +73,9 @@ public class Simulator
         }
 
         // Create a view of the state of each location in the field.
-        //view = new SimulatorView(x, y);
+        view = new SimulatorView(x, y);
+        
+        view.setColor(Particle.class, Color.red);
         
         // Setup a valid starting point.
         reset();
@@ -99,13 +104,14 @@ public class Simulator
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act();
+            System.out.println("Particle done acting");
             /*if(! p.isInAction()) {
                 it.remove();
             }*/
         }
 
         particles.addAll(newParticle);
-        //view.showStatus(step, grid);
+        view.showStatus(step, grid);
     }
     
     /**
@@ -117,7 +123,7 @@ public class Simulator
         particles.clear();
                 
         // Show the starting state in the view.
-        //view.showStatus(step, grid);
+        view.showStatus(step, grid);
     }
     
     public void populate(int numPartic)
@@ -128,6 +134,7 @@ public class Simulator
         {
             Particle p = new Particle(grid, location);
             particles.add(p);
+            System.out.println("Added particle");
         }
     }
     

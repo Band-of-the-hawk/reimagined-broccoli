@@ -34,10 +34,10 @@ public class Grid
     public Grid(int x)
     {
         this.dim = 1;
-        this.x = x;
+        this.x = 2*x;
         this.y = 0;
         this.z = 0;
-        grid = new Object[x][0][0];
+        grid = new Object[2*x][0][0];
     }
     
     /**
@@ -48,10 +48,10 @@ public class Grid
     public Grid(int x, int y)
     {
         this.dim = 2;
-        this.x = x;
-        this.y = y;
+        this.x = 2*x;
+        this.y = 2*y;
         this.z = 0;
-        grid = new Object[x][y][0];
+        grid = new Object[2*x][2*y][0];
     }
     
     /**
@@ -63,10 +63,10 @@ public class Grid
     public Grid(int x, int y, int z)
     {
         this.dim = 3;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        grid = new Object[x][y][z];
+        this.x = 2*x;
+        this.y = 2*y;
+        this.z = 2*z;
+        grid = new Object[2*x][2*y][2*z];
     }
     
     /**
@@ -163,7 +163,7 @@ public class Grid
     
     public Location getCenterLocation()
     {
-        return new Location(0,0,0);
+        return new Location(x/2,y/2,z/2);
     }
     
     /**

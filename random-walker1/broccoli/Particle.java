@@ -11,6 +11,10 @@ public class Particle
     
     private Location location;
     
+    private int x;
+    private int y;
+    private int z;
+    
     private final Grid grid;
     
     /**
@@ -29,8 +33,12 @@ public class Particle
      */
     public void act()
     {
+        System.out.println("Particle b4 location: " + Integer.toString(x)
+                + " " + Integer.toString(y) + " " + Integer.toString(z));
         List<Location> adjLocations = grid.getAdjacentLocations(location);
         randomWalk(adjLocations);
+        System.out.println("Particle after location: " + Integer.toString(x)
+                + " " + Integer.toString(y) + " " + Integer.toString(z));
     }
     
     private void randomWalk(List<Location> locations)
@@ -38,9 +46,9 @@ public class Particle
         int availableSize = locations.size();
         double randomIndex = Math.random() * availableSize;
         randomIndex = Math.floor(randomIndex);
-        int randIndex = Integer.parseInt(Double.toString(randomIndex));
+        int randIndex = (int)randomIndex; //Integer.parseInt(Double.toString(randomIndex));
         
-        location = locations.get(randIndex);
+        setLocation(locations.get(randIndex));
     }
     
     /**
@@ -63,12 +71,14 @@ public class Particle
     
     /**
      * 
-     * @param center 
+     * @param loc 
      */
-    private void setLocation(Location center)
+    private void setLocation(Location loc)
     {
-        
-        location = center;
-        grid.place(this, center);
+        location = loc;
+        grid.place(this, loc);
+        x = location.getX();
+        y = location.getY();
+        z = location.getZ();
     }
 }
