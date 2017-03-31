@@ -11,8 +11,6 @@ import java.util.*;
  */
 public class Grid
 {
-    // A random number generator for providing random locations.
-    //private static final Random rand = Randomizer.getRandom(); TODO
     
     // Constants defining which dimensions to use
     private final static int ONE_D = 1;
@@ -24,8 +22,6 @@ public class Grid
     
     // The depth and width of the field.
     private final int x, y, z;
-    // Storage for the animals.
-    private final Object[][][] grid;
 
     /**
      * Represent a field of the given dimensions.
@@ -37,7 +33,6 @@ public class Grid
         this.x = 2*x;
         this.y = 0;
         this.z = 0;
-        grid = new Object[2*x][0][0];
     }
     
     /**
@@ -51,7 +46,6 @@ public class Grid
         this.x = 2*x;
         this.y = 2*y;
         this.z = 0;
-        grid = new Object[2*x][2*y][0];
     }
     
     /**
@@ -66,101 +60,12 @@ public class Grid
         this.x = 2*x;
         this.y = 2*y;
         this.z = 2*z;
-        grid = new Object[2*x][2*y][2*z];
-    }
-    
-    /**
-     * Empty the field.
-     */
-    public void clearAll()
-    {
-        for(int xPos = 0; xPos < this.x; xPos++) {
-            for(int yPos = 0; yPos < this.y; yPos++) {
-                for(int zPos = 0; zPos < this.z; zPos++) {
-                    grid[xPos][yPos][zPos] = null;
-                }
-            }
-        }
-    }
-    
-    /**
-     * Clear the given location.
-     * @param location The location to clearAll.
-     */
-    public void clear(Location location)
-    {
-        grid[location.getX()][location.getY()][location.getZ()] = null;
-    }
-    
-    /**
-     * Place an animal at the given location.
-     * If there is already an animal at the location it will
-     * be lost.
-     * @param particle The particle to be placed.
-     * @param x Row coordinate of the location.
-     * @param y Column coordinate of the location.
-     * @param z Height coordinate of the location.
-     */
-    public void place(Object particle, int x, int y, int z)
-    {
-        place(particle, new Location(x, y, z));
-    }
-    
-    /**
-     * Place an animal at the given location.
-     * If there is already an animal at the location it will
-     * be lost.
-     * @param particle The animal to be placed.
-     * @param location Where to place the animal.
-     */
-    public void place(Object particle, Location location)
-    {
-        grid[location.getX()][location.getY()][location.getZ()] = particle;
-    }
-    
-    /**
-     * Return the animal at the given location, if any.
-     * @param location Where in the field.
-     * @return The animal at the given location, or null if there is none.
-     */
-    public Object getObjectAt(Location location)
-    {
-        return getObjectAt(location.getX(), location.getY(), location.getZ());
     }
     
     /**
      * 
-     * @param x
      * @return 
      */
-    public Object getObjectAtOne(int x)
-    {
-        return grid[x][0][0];
-    }
-    
-    /**
-     * 
-     * @param x
-     * @param y
-     * @return 
-     */
-    public Object getObjectAtTwo(int x, int y)
-    {
-        return grid[x][y][0];
-    }
-    
-    /**
-     * Return the animal at the given location, if any.
-     * @param x The desired row.
-     * @param y The desired column.
-     * @param z The desired height level
-     * @return The animal at the given location, or null if there is none.
-     */
-    public Object getObjectAt(int x, int y, int z)
-    {
-        return grid[x][y][z];
-    }
-    
     public Location getCenterLocation()
     {
         return new Location(x/2,y/2,z/2);
