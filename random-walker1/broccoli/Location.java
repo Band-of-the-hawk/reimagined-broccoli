@@ -84,7 +84,7 @@ public class Location
     @Override
     public int hashCode()
     {
-        return (x << 16) + y;
+        return ((x << 16) + y) << 16 + z;
     }
     
     /**

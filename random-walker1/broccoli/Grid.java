@@ -11,8 +11,6 @@ import java.util.*;
  */
 public class Grid
 {
-    // A random number generator for providing random locations.
-    //private static final Random rand = Randomizer.getRandom(); TODO
     
     // Constants defining which dimensions to use
     private final static int ONE_D = 1;
@@ -161,6 +159,10 @@ public class Grid
         return grid[x][y][z];
     }
     
+    /**
+     * 
+     * @return 
+     */
     public Location getCenterLocation()
     {
         return new Location(x/2,y/2,z/2);

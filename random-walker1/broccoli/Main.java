@@ -22,7 +22,7 @@ public class Main /*extends Application*/
     {
         //launch(args);
         Simulator simulator = new Simulator(10, 10, 10);
-        simulator.populate(1);
+        simulator.populate(2000);
         simulator.simulate(100);
     }
 

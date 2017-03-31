@@ -1,14 +1,13 @@
 package broccoli;
 
-import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
+ * @author Thomas Todal, Vinh Tran, Kristoffer Martinsen
+ * @version 2017.03.31
  */
 public class Simulator
 {
@@ -30,7 +29,7 @@ public class Simulator
     // The current step of the simulation.
     private int step;
     // A graphical view of the simulation.
-    private SimulatorView view;
+    //private SimulatorView view;
     // The current state of the pupulation
     
     /**
@@ -45,7 +44,7 @@ public class Simulator
      * Create a simulation field with the given size.
      * @param x Depth of the field. Must be greater than zero.
      * @param y Width of the field. Must be greater than zero.
-     * @param z
+     * @param z Height of the field. Must be greater than zero.
      */
     public Simulator(int x, int y, int z)
     {
@@ -57,8 +56,7 @@ public class Simulator
             z = DEFAULT_Z;
         }
         
-        // TODO
-        // Create a new ArrayList of animals.
+        // Create a new ArrayList of particles.
         particles = new ArrayList<>();
         
         // Create a new grid with depth and width.
@@ -73,9 +71,9 @@ public class Simulator
         }
 
         // Create a view of the state of each location in the field.
-        view = new SimulatorView(x, y);
+        //view = new SimulatorView(x, y);
         
-        view.setColor(Particle.class, Color.red);
+        //view.setColor(Particle.class, Color.red);
         
         // Setup a valid starting point.
         reset();
@@ -100,18 +98,13 @@ public class Simulator
     public void simulateOneStep()
     {
         step++;
-        List<Particle> newParticle = new ArrayList<>();
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act();
-            System.out.println("Particle done acting");
-            /*if(! p.isInAction()) {
-                it.remove();
-            }*/
+            System.out.println("Particle " + p.getNumber() + " done acting");
         }
 
-        particles.addAll(newParticle);
-        view.showStatus(step, grid);
+        //view.showStatus(step, grid);
     }
     
     /**
@@ -123,7 +116,7 @@ public class Simulator
         particles.clear();
                 
         // Show the starting state in the view.
-        view.showStatus(step, grid);
+        //view.showStatus(step, grid);
     }
     
     public void populate(int numPartic)
@@ -132,73 +125,9 @@ public class Simulator
         Location location = grid.getCenterLocation();
         for(int i = 0; i < numPartic; i++)
         {
-            Particle p = new Particle(grid, location);
+            Particle p = new Particle(grid, location, i);
             particles.add(p);
-            System.out.println("Added particle");
+            System.out.println("Added particle " + i);
         }
     }
-    
-    //Checking the field
-    //TODO
-    /*
-    private boolean isFieldValid()
-    {
-       ArrayList<Particle> animalsInField = getAnimalsInField();
-        boolean result = true;
-        
-        for(Actor actor: animalsInField)
-        {
-            if(!animals.contains(actor))
-            {
-                result = false;
-            }
-        }
-        return result;
-    }
-    
-
-    //Checking the field List
-    private boolean isListValid()
-    {
-        ArrayList<Animal> animalsInField = getAnimalsInField();
-        boolean result = true;
-        
-        for(Animal animal: animals)
-        {
-            if(animal.isAlive())
-            {
-                if(!animalsInField.contains(animal))
-                {
-                    result = false;
-                }   
-            }
-        }
-        return result;
-    }
-    */
-    //Checking through the field and add it into a list.
-    private ArrayList<Particle> getParticleInField()
-    {
-        ArrayList<Particle> particleList = new ArrayList<>();
-        
-        int width = grid.getWidth();
-        int depth = grid.getDepth();
-        
-        for(int iWidth = 0; iWidth < width; iWidth++)
-        {
-            for(int iDepth = 0; iDepth < depth; iDepth++)
-            {
-                Object objSelected = grid.getObjectAt(new Location(iDepth, iWidth, 0));
-                if(objSelected != null)
-                {
-                    if(objSelected instanceof Particle)
-                    {
-                        particleList.add((Particle) objSelected);
-                    }
-                }
-            }
-        }
-        return particleList;
-    }
-    
 }
