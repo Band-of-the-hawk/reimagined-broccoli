@@ -6,8 +6,8 @@ import java.util.*;
  * Represent a grid of field positions.
  * Each position is able to store a single object.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
+ * @author Vinh Tran, Thomas Todal, Kristoffer Martinsen
+ * @version 31.03.2017
  */
 public class Grid
 {
@@ -20,12 +20,14 @@ public class Grid
     // Current dimension
     private final int dim;
     
-    // The depth and width of the field.
+    // The depth, width and height of the field.
     private final int x, y, z;
 
     /**
      * Represent a field of the given dimensions.
      * @param x The depth of the field.
+     * @param y The width of the field.
+     * @param z The hight of the field.
      */
     public Grid(int x)
     {
@@ -39,6 +41,7 @@ public class Grid
      * Represent a field of the given dimensions.
      * @param x The depth of the field.
      * @param y The width of the field.
+     * @param z The hight of the field.
      */
     public Grid(int x, int y)
     {
@@ -52,7 +55,7 @@ public class Grid
      * Represent a field of the given dimensions.
      * @param x The depth of the field.
      * @param y The width of the field.
-     * @param z
+     * @param z The height of the field.
      */
     public Grid(int x, int y, int z)
     {
@@ -64,7 +67,7 @@ public class Grid
     
     /**
      * 
-     * @return 
+     * @return the center location
      */
     public Location getCenterLocation()
     {
@@ -72,9 +75,10 @@ public class Grid
     }
     
     /**
-     *
+     * This function keeps control of which dimension it should simulate
+     * 1D, 2D or 3D
      * @param location the value of location
-     * @return 
+     * @return return the AdjacentLocation
      */
     public List<Location> getAdjacentLocations(Location location)
     {

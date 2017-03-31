@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by KristofferMartinsen, ThomasSTodal and VinhKTran on 2/26/2017.
+ * Represent a logg of the simulator.
+ * 
+ * @author Vinh Tran, Thomas Todal, Kristoffer Martinsen
+ * @version 31.03.2017
  */
 public class Logger
 {

@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author ThomasS Todal
+ * @author Vinh Tran, Thomas Todal, Kristoffer Martinsen
+ * @version 31.03.2017
  */
 public class Main /*extends Application*/
 {
@@ -22,7 +23,7 @@ public class Main /*extends Application*/
     {
         //launch(args);
         Simulator simulator = new Simulator(10, 10, 10);
-        simulator.populate(2000);
+        simulator.populate(500);
         simulator.simulate(100);
     }
 
