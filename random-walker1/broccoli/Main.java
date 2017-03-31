@@ -1,6 +1,7 @@
 package broccoli;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -36,6 +37,14 @@ public class Main extends Application
         height = stage.getHeight();
         width = stage.getWidth();
         
-        
+        scene = new Scene(contentController());
+        stage.setTitle("Diffusjon");
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    public Parent contentController()
+    {
+        return null;
     }
 }

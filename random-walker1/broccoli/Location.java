@@ -16,6 +16,29 @@ public class Location
     /**
      * Represent a row and column.
      * @param x The row.
+     */
+    public Location(int x)
+    {
+        this.x = x;
+        this.y = 0;
+        this.z = 0;
+    }
+    
+    /**
+     * Represent a row and column.
+     * @param x The row.
+     * @param y The column.
+     */
+    public Location(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = 0;
+    }
+    
+    /**
+     * Represent a row and column.
+     * @param x The row.
      * @param y The column.
      * @param z
      */

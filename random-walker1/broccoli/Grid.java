@@ -1,5 +1,7 @@
 package broccoli;
 
+import java.util.*;
+
 /**
  * Represent a grid of field positions.
  * Each position is able to store a single object.
@@ -11,6 +13,11 @@ public class Grid
 {
     // A random number generator for providing random locations.
     //private static final Random rand = Randomizer.getRandom(); TODO
+    
+    // Constants defining which dimensions to use
+    private final static int ONE_D = 1;
+    private final static int TWO_D = 2;
+    private final static int THREE_D = 3;
     
     // The depth and width of the field.
     private final int x, y, z;
@@ -90,52 +97,78 @@ public class Grid
     }
     
     /**
+     * 
+     * @param x
+     * @return 
+     */
+    public Object getObjectAtOne(int x)
+    {
+        return grid[x][0][0];
+    }
+    
+    /**
+     * 
+     * @param x
+     * @param y
+     * @return 
+     */
+    public Object getObjectAtTwo(int x, int y)
+    {
+        return grid[x][y][0];
+    }
+    
+    /**
      * Return the animal at the given location, if any.
-     * @param row The desired row.
-     * @param col The desired column.
+     * @param x The desired row.
+     * @param y The desired column.
+     * @param z The desired height level
      * @return The animal at the given location, or null if there is none.
      */
     public Object getObjectAt(int x, int y, int z)
     {
         return grid[x][y][z];
     }
-    public Object getObjectAtOne(int x)
-    {
-        return grid[x][0][0];
-    }
-    public Object getObjectAtTwo(int x, int y)
-    {
-        return grid[x][y][0];
-    }
     
     public Location getCenterLocation()
     {
-       // List<Location> centerLocation = new LinkedList<>();
-        
         return new Location(0,0,0);
     }
     
-    public Location getAdjacentLocations(int dimension)
+    /**
+     *
+     * @param dimension the value of dimension
+     * @param location the value of location
+     * @return 
+     */
+    public List<Location> getAdjacentLocations(int dimension, Location location)
     {
-        int oneD = 1;
-        int twoD = 2;
-        int threeD = 3;
-        
-        
-        if(oneD == dimension)
-        {
-           getObjectAtOne(x);
+        List<Location> adjLocations = new LinkedList<>();
+        int xLoc = location.getX();
+        int yLoc = location.getY();
+        int zLoc = location.getZ();
+        switch (dimension) {
+            case ONE_D:
+                adjLocations.add(new Location(xLoc - 1));
+                adjLocations.add(new Location(xLoc + 1));
+                break;
+            case TWO_D:
+                adjLocations.add(new Location(xLoc - 1, yLoc));
+                adjLocations.add(new Location(xLoc + 1, yLoc));
+                adjLocations.add(new Location(xLoc, yLoc - 1));
+                adjLocations.add(new Location(xLoc, yLoc + 1));
+                break;
+            case THREE_D:
+                adjLocations.add(new Location(xLoc - 1, yLoc, zLoc));
+                adjLocations.add(new Location(xLoc + 1, yLoc, zLoc));
+                adjLocations.add(new Location(xLoc, yLoc - 1, zLoc));
+                adjLocations.add(new Location(xLoc, yLoc + 1, zLoc));
+                adjLocations.add(new Location(xLoc, yLoc, zLoc - 1));
+                adjLocations.add(new Location(xLoc, yLoc, zLoc + 1));
+                break;
+            default:
+                break;
         }
-        if(twoD == dimension)
-        {
-            getObjectAtTwo(x, y);
-        }
-        if(threeD == dimension)
-        {
-           getObjectAt(x, y, z); 
-        }
-        
-        return null;
+        return adjLocations;
     }
     
     
