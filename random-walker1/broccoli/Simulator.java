@@ -25,9 +25,8 @@ public class Simulator
     // The current step of the simulation.
     private int step;
     // A graphical view of the simulation.
-    private SimulatorView view;
-    // The current state of the pupulation 
-    //private PopulationGenerator populationGenerator;
+    //private SimulatorView view;
+    // The current state of the pupulation
     
     /**
      * Construct a simulation field with default size.
@@ -59,7 +58,7 @@ public class Simulator
         grid = new Grid(depth, width, 0);
 
         // Create a view of the state of each location in the field.
-        view = new SimulatorView(depth, width);
+        //view = new SimulatorView(depth, width);
         
         //TODO
         // Create randomly populate in the field with foxes and rabbits.
@@ -89,7 +88,7 @@ public class Simulator
      */
     public void simulate(int numSteps)
     {
-        for(int stepNum = 1; stepNum <= numSteps && view.isViable(grid); stepNum++) {
+        for(int stepNum = 1; stepNum <= numSteps /*&& view.isViable(grid)*/; stepNum++) {
             simulateOneStep();
         }
     }
@@ -106,14 +105,14 @@ public class Simulator
         List<Particle> newParticle = new ArrayList<>();
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
-            p.act(newParticle);
+            p.act();
             /*if(! p.isInAction()) {
                 it.remove();
             }*/
         }
   
         particles.addAll(newParticle);
-        view.showStatus(step, grid);
+        //view.showStatus(step, grid);
       
     /*   
         // Checking if the field is valid.
@@ -146,12 +145,12 @@ public class Simulator
         populate(1);
                 
         // Show the starting state in the view.
-        view.showStatus(step, grid);
+        //view.showStatus(step, grid);
     }
     
     private void populate(int nrParticles)
     {
-        grid.clear();
+        grid.clearAll();
         Location location = grid.getCenterLocation();
         for(int i = 0; i < nrParticles; i++)
         {
