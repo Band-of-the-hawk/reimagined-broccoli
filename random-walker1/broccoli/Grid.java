@@ -50,7 +50,7 @@ public class Grid
      */
     public void clear(Location location)
     {
-        field[location.getRow()][location.getCol()] = null;
+        field[location.getX()][location.getY()] = null;
     }
     
     /**
@@ -63,7 +63,7 @@ public class Grid
      */
     public void place(Object animal, int row, int col)
     {
-        place(animal, new Location(row, col));
+        place(animal, new Location(row, col, 0));
     }
     
     /**
@@ -75,7 +75,7 @@ public class Grid
      */
     public void place(Object animal, Location location)
     {
-        field[location.getRow()][location.getCol()] = animal;
+        field[location.getX()][location.getY()] = animal;
     }
     
     /**
@@ -85,7 +85,7 @@ public class Grid
      */
     public Object getObjectAt(Location location)
     {
-        return getObjectAt(location.getRow(), location.getCol());
+        return getObjectAt(location.getX(), location.getY());
     }
     
     /**
@@ -163,8 +163,8 @@ public class Grid
         // The list of locations to be returned.
         List<Location> locations = new LinkedList<>();
         if(location != null) {
-            int row = location.getRow();
-            int col = location.getCol();
+            int row = location.getX();
+            int col = location.getY();
             for(int roffset = -1; roffset <= 1; roffset++) {
                 int nextRow = row + roffset;
                 if(nextRow >= 0 && nextRow < depth) {
@@ -172,7 +172,7 @@ public class Grid
                         int nextCol = col + coffset;
                         // Exclude invalid locations and the original location.
                         if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
-                            locations.add(new Location(nextRow, nextCol));
+                            locations.add(new Location(nextRow, nextCol, 0));
                         }
                     }
                 }
