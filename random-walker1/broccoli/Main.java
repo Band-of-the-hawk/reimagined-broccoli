@@ -1,6 +1,7 @@
 package broccoli;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
  *
  * @author ThomasS Todal
  */
-public class Main extends Application
+public class Main /*extends Application*/
 {
     private Stage stage;
     private Scene scene;
@@ -19,12 +20,13 @@ public class Main extends Application
     
     public static void main(String[] args)
     {
-        launch(args);
-        Simulator simulator = new Simulator();
+        //launch(args);
+        Simulator simulator = new Simulator(10, 10, 10);
+        simulator.populate(1);
         simulator.simulate(100);
     }
 
-    @Override
+    /*@Override
     public void start(Stage stage) throws Exception
     {
         this.stage = stage;
@@ -36,6 +38,14 @@ public class Main extends Application
         height = stage.getHeight();
         width = stage.getWidth();
         
-        
-    }
+        scene = new Scene(contentController());
+        stage.setTitle("Diffusjon");
+        stage.setScene(scene);
+        stage.show();
+    }*/
+    
+    /*public Parent contentController()
+    {
+        return null;
+    }*/
 }

@@ -6,55 +6,79 @@ import java.util.List;
  *
  * @author Vinh
  */
-public class Particle {
-    
-    private final boolean inAction;
+public class Particle
+{
     
     private Location location;
     
+    private int x;
+    private int y;
+    private int z;
+    
     private final Grid grid;
     
-    // act
-    public void act(List<Particle> newParticle)
+    /**
+     * 
+     * @param grid
+     * @param location 
+     */
+    public Particle(Grid grid, Location location)
     {
-        System.out.println("sup");
-    }
-    
-    protected Particle(Grid grid, Location location)
-    {
-        this.inAction = true;
         this.grid = grid;
         setLocation(location);
     }
     
-    protected boolean isInAction()
+    /**
+     * 
+     */
+    public void act()
     {
-        return inAction;
+        System.out.println("Particle b4 location: " + Integer.toString(x)
+                + " " + Integer.toString(y) + " " + Integer.toString(z));
+        List<Location> adjLocations = grid.getAdjacentLocations(location);
+        randomWalk(adjLocations);
+        System.out.println("Particle after location: " + Integer.toString(x)
+                + " " + Integer.toString(y) + " " + Integer.toString(z));
     }
     
-    protected Grid getGrid()
+    private void randomWalk(List<Location> locations)
+    {
+        int availableSize = locations.size();
+        double randomIndex = Math.random() * availableSize;
+        randomIndex = Math.floor(randomIndex);
+        int randIndex = (int)randomIndex; //Integer.parseInt(Double.toString(randomIndex));
+        
+        setLocation(locations.get(randIndex));
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    private Grid getGrid()
     {
         return grid;
     }
     
-    protected Location getLoaction()
+    /**
+     * 
+     * @return 
+     */
+    private Location getLoaction()
     {
         return location;
     }
     
-    protected void setLocation(Location center)
+    /**
+     * 
+     * @param loc 
+     */
+    private void setLocation(Location loc)
     {
-        if(location != null)
-        {
-            //Add particle
-        }
-        location = center;
-        grid.place(this, center);
-    }
-    
-    private void addParticle(List<Particle> newParticle)
-    {
-        Grid grid = getGrid();
-        
+        location = loc;
+        grid.place(this, loc);
+        x = location.getX();
+        y = location.getY();
+        z = location.getZ();
     }
 }
