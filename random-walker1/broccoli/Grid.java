@@ -80,27 +80,35 @@ public class Grid
     {
         List<Location> adjLocations = new LinkedList<>();
         int xLoc = location.getX();
+        int xLocPlus = location.getX() + 1;
+        int xLocMinus = location.getX() - 1;
         int yLoc = location.getY();
+        int yLocPlus = location.getY() + 1;
+        int yLocMinus = location.getY() - 1;
         int zLoc = location.getZ();
+        int zLocPlus = location.getZ() + 1;
+        int zLocMinus = location.getZ() - 1;
+        
+        
         
         switch (dim) {
             case ONE_D:
-                adjLocations.add(new Location(xLoc - 1));
-                adjLocations.add(new Location(xLoc + 1));
+                adjLocations.add(new Location(xLocPlus));
+                adjLocations.add(new Location(xLocMinus));
                 break;
             case TWO_D:
-                adjLocations.add(new Location(xLoc - 1, yLoc));
-                adjLocations.add(new Location(xLoc + 1, yLoc));
-                adjLocations.add(new Location(xLoc, yLoc - 1));
-                adjLocations.add(new Location(xLoc, yLoc + 1));
+                adjLocations.add(new Location(xLocPlus, yLoc));
+                adjLocations.add(new Location(xLocMinus, yLoc));
+                adjLocations.add(new Location(xLoc, yLocPlus));
+                adjLocations.add(new Location(xLoc, yLocMinus));
                 break;
             case THREE_D:
-                adjLocations.add(new Location(xLoc - 1, yLoc, zLoc));
-                adjLocations.add(new Location(xLoc + 1, yLoc, zLoc));
-                adjLocations.add(new Location(xLoc, yLoc - 1, zLoc));
-                adjLocations.add(new Location(xLoc, yLoc + 1, zLoc));
-                adjLocations.add(new Location(xLoc, yLoc, zLoc - 1));
-                adjLocations.add(new Location(xLoc, yLoc, zLoc + 1));
+                adjLocations.add(new Location(xLocPlus, yLoc, zLoc));
+                adjLocations.add(new Location(xLocMinus, yLoc, zLoc));
+                adjLocations.add(new Location(xLoc, yLocPlus, zLoc));
+                adjLocations.add(new Location(xLoc, yLocMinus, zLoc));
+                adjLocations.add(new Location(xLoc, yLoc, zLocPlus));
+                adjLocations.add(new Location(xLoc, yLoc, zLocMinus));
                 break;
             default:
                 break;
