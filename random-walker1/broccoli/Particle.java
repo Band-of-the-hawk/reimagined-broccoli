@@ -8,53 +8,47 @@ import java.util.List;
  */
 public class Particle {
     
-    private final boolean inAction;
+    //private final boolean inAction;
     
     private Location location;
     
     private final Grid grid;
     
-    // act
-    public void act(List<Particle> newParticle)
-    {
-        System.out.println("sup");
-    }
     
-    protected Particle(Grid grid, Location location)
+    public Particle(Grid grid, Location location)
     {
-        this.inAction = true;
+        //this.inAction = true;
         this.grid = grid;
         setLocation(location);
     }
     
-    protected boolean isInAction()
+    public void act(List<Particle> newParticle)
     {
-        return inAction;
+        
+        System.out.println("sup");
     }
     
-    protected Grid getGrid()
+    /*public boolean isInAction()
+    {
+        return inAction;
+    }*/
+    
+    private Grid getGrid()
     {
         return grid;
     }
     
-    protected Location getLoaction()
+    private Location getLoaction()
     {
         return location;
     }
     
-    protected void setLocation(Location center)
+    private void setLocation(Location center)
     {
-        if(location != null)
-        {
-            //Add particle
-        }
+        
         location = center;
         grid.place(this, center);
     }
     
-    private void addParticle(List<Particle> newParticle)
-    {
-        Grid grid = getGrid();
-        
-    }
+    
 }

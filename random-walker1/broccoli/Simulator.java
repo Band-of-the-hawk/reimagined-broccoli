@@ -19,7 +19,7 @@ public class Simulator
 
      //TODO
     // Lists of animals in the field.
-    private List<Particle> particle;
+    private List<Particle> particles;
     // The current state of the field.
     private Grid grid;
     // The current step of the simulation.
@@ -53,7 +53,7 @@ public class Simulator
         
         // TODO
         // Create a new ArrayList of animals.
-        particle = new ArrayList<>();
+        particles = new ArrayList<>();
         
         // Create a new field with depth and width.
         grid = new Grid(depth, width, 0);
@@ -104,15 +104,15 @@ public class Simulator
         
         step++;
         List<Particle> newParticle = new ArrayList<>();
-        for(Iterator<Particle> it = particle.iterator(); it.hasNext(); ) {
+        for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act(newParticle);
-            if(! p.isInAction()) {
+            /*if(! p.isInAction()) {
                 it.remove();
-            }
+            }*/
         }
   
-        particle.addAll(newParticle);
+        particles.addAll(newParticle);
         view.showStatus(step, grid);
       
     /*   
@@ -142,11 +142,22 @@ public class Simulator
     public void reset()
     {
         step = 0;
-        particle.clear();
-        //populationGenerator.populate();
+        particles.clear();
+        populate(1);
                 
         // Show the starting state in the view.
         view.showStatus(step, grid);
+    }
+    
+    private void populate(int nrParticles)
+    {
+        grid.clear();
+        Location location = grid.getCenterLocation();
+        for(int i = 0; i < nrParticles; i++)
+        {
+            Particle p = new Particle(grid, location);
+            particles.add(p);
+        }
     }
     
     //Checking the field

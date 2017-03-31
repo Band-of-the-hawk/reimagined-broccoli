@@ -87,7 +87,7 @@ public class Grid
      */
     public Object getObjectAt(Location location)
     {
-        return getObjectAt(location.getX(), location.getY());
+        return getObjectAt(location.getX(), location.getY(), location.getZ());
     }
     
     /**
@@ -96,15 +96,16 @@ public class Grid
      * @param col The desired column.
      * @return The animal at the given location, or null if there is none.
      */
-    public Object getObjectAt(int row, int col)
+    public Object getObjectAt(int x, int y, int z)
     {
-        return grid[row][col];
+        return grid[x][y][z];
     }
     
-    public Location setCenterLocation(Location location)
+    public Location getCenterLocation()
     {
+       // List<Location> centerLocation = new LinkedList<>();
         
-        return null;
+        return new Location(0,0,0);
     }
     
     /**

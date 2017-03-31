@@ -100,15 +100,17 @@ public class SimulatorView extends JFrame
         
         gridView.preparePaint();
 
-        for(int row = 0; row < field.getDepth(); row++) {
-            for(int col = 0; col < field.getWidth(); col++) {
-                Object particle = field.getObjectAt(row, col);
-                if(particle != null) {
-                    stats.incrementCount(particle.getClass());
-                    gridView.drawMark(col, row, getColor(particle.getClass()));
-                }
-                else {
-                    gridView.drawMark(col, row, EMPTY_COLOR);
+        for(int x = 0; x < field.getDepth(); x++) {
+            for(int y = 0; y < field.getWidth(); y++) {
+                for(int z = 0; z < field.getHeight(); z++) {
+                    Object particle = field.getObjectAt(x, y, z);
+                    if(particle != null) {
+                        stats.incrementCount(particle.getClass());
+                        gridView.drawMark(y, x, getColor(particle.getClass()));
+                    }
+                    else {
+                        gridView.drawMark(y, x, EMPTY_COLOR);
+                    }
                 }
             }
         }

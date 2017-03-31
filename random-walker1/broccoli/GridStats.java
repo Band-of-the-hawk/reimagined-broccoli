@@ -118,11 +118,14 @@ public class GridStats
     private void generateCounts(Grid grid)
     {
         reset();
-        for(int row = 0; row < grid.getDepth(); row++) {
-            for(int col = 0; col < grid.getWidth(); col++) {
-                Object animal = grid.getObjectAt(row, col);
-                if(animal != null) {
-                    incrementCount(animal.getClass());
+       for(int x = 0; x < grid.getDepth(); x++) {
+            for(int y = 0; y < grid.getWidth(); y++) {
+                for(int z = 0; z < grid.getHeight(); z++) {
+                
+                Object particle = grid.getObjectAt(x,y,z);
+                if(particle != null) {
+                    incrementCount(particle.getClass());
+                }
                 }
             }
         }
