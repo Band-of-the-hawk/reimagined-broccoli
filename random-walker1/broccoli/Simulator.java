@@ -56,7 +56,7 @@ public class Simulator
         particle = new ArrayList<>();
         
         // Create a new field with depth and width.
-        grid = new Grid(depth, width);
+        grid = new Grid(depth, width, 0);
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
@@ -154,7 +154,7 @@ public class Simulator
     /*
     private boolean isFieldValid()
     {
-       //ArrayList<Actor> animalsInField = getAnimalsInField();
+       ArrayList<Particle> animalsInField = getAnimalsInField();
         boolean result = true;
         
         for(Actor actor: animalsInField)
@@ -199,7 +199,7 @@ public class Simulator
         {
             for(int iDepth = 0; iDepth < depth; iDepth++)
             {
-                Object objSelected = grid.getObjectAt(new Location(iDepth, iWidth));
+                Object objSelected = grid.getObjectAt(new Location(iDepth, iWidth, 0));
                 if(objSelected != null)
                 {
                     if(objSelected instanceof Particle)

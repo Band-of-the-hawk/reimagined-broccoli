@@ -9,18 +9,21 @@ package broccoli;
 public class Location
 {
     // Row and column positions.
-    private final int row;
-    private final int col;
+    private final int x;
+    private final int y;
+    private final int z;
 
     /**
      * Represent a row and column.
-     * @param row The row.
-     * @param col The column.
+     * @param x The row.
+     * @param y The column.
+     * @param z
      */
-    public Location(int row, int col)
+    public Location(int x, int y, int z)
     {
-        this.row = row;
-        this.col = col;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
     
     /**
@@ -32,7 +35,7 @@ public class Location
     {
         if(obj instanceof Location) {
             Location other = (Location) obj;
-            return row == other.getRow() && col == other.getCol();
+            return x == other.getX() && y == other.getY() && z == other.getZ();
         }
         else {
             return false;
@@ -46,7 +49,7 @@ public class Location
     @Override
     public String toString()
     {
-        return row + "," + col;
+        return x + "," + y + "," + z;
     }
     
     /**
@@ -58,22 +61,31 @@ public class Location
     @Override
     public int hashCode()
     {
-        return (row << 16) + col;
+        return (x << 16) + y;
     }
     
     /**
      * @return The row.
      */
-    public int getRow()
+    public int getX()
     {
-        return row;
+        return x;
     }
     
     /**
      * @return The column.
      */
-    public int getCol()
+    public int getY()
     {
-        return col;
+        return y;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public int getZ()
+    {
+        return z;
     }
 }

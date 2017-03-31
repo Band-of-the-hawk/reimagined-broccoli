@@ -16,20 +16,22 @@ public class Grid
     //private static final Random rand = Randomizer.getRandom(); TODO
     
     // The depth and width of the field.
-    private final int depth, width;
+    private final int x, y, z;
     // Storage for the animals.
-    private final Object[][] field;
+    private final Object[][][] grid;
 
     /**
      * Represent a field of the given dimensions.
-     * @param depth The depth of the field.
-     * @param width The width of the field.
+     * @param x The depth of the field.
+     * @param y The width of the field.
+     * @param z
      */
-    public Grid(int depth, int width)
+    public Grid(int x, int y, int z)
     {
-        this.depth = depth;
-        this.width = width;
-        field = new Object[depth][width];
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        grid = new Object[x][y][z];
     }
     
     /**
@@ -37,9 +39,9 @@ public class Grid
      */
     public void clear()
     {
-        for(int row = 0; row < depth; row++) {
-            for(int col = 0; col < width; col++) {
-                field[row][col] = null;
+        for(int row = 0; row < x; row++) {
+            for(int col = 0; col < y; col++) {
+                grid[row][col] = null;
             }
         }
     }
@@ -50,32 +52,32 @@ public class Grid
      */
     public void clear(Location location)
     {
-        field[location.getRow()][location.getCol()] = null;
+        grid[location.getX()][location.getY()][location.getZ()] = null;
     }
     
     /**
      * Place an animal at the given location.
      * If there is already an animal at the location it will
      * be lost.
-     * @param animal The animal to be placed.
+     * @param particle The animal to be placed.
      * @param row Row coordinate of the location.
      * @param col Column coordinate of the location.
      */
-    public void place(Object animal, int row, int col)
+    public void place(Object particle, int row, int col)
     {
-        place(animal, new Location(row, col));
+        place(particle, new Location(row, col, 0));
     }
     
     /**
      * Place an animal at the given location.
      * If there is already an animal at the location it will
      * be lost.
-     * @param animal The animal to be placed.
+     * @param particle The animal to be placed.
      * @param location Where to place the animal.
      */
-    public void place(Object animal, Location location)
+    public void place(Object particle, Location location)
     {
-        field[location.getRow()][location.getCol()] = animal;
+        grid[location.getX()][location.getY()][location.getZ()] = particle;
     }
     
     /**
@@ -85,7 +87,7 @@ public class Grid
      */
     public Object getObjectAt(Location location)
     {
-        return getObjectAt(location.getRow(), location.getCol());
+        return getObjectAt(location.getX(), location.getY());
     }
     
     /**
@@ -96,7 +98,13 @@ public class Grid
      */
     public Object getObjectAt(int row, int col)
     {
-        return field[row][col];
+        return grid[row][col];
+    }
+    
+    public Location setCenterLocation(Location location)
+    {
+        
+        return null;
     }
     
     /**
@@ -107,18 +115,18 @@ public class Grid
      * @param location The location from which to generate an adjacency.
      * @return A valid location within the grid area.
      */
-    public Location randomAdjacentLocation(Location location)
+    /*public Location randomAdjacentLocation(Location location)
     {
         List<Location> adjacent = adjacentLocations(location);
         return adjacent.get(0);
-    }
+    }*/
     
     /**
      * Get a shuffled list of the free adjacent locations.
      * @param location Get locations adjacent to this.
      * @return A list of free adjacent locations.
      */
-    public List<Location> getFreeAdjacentLocations(Location location)
+    /*public List<Location> getFreeAdjacentLocations(Location location)
     {
         List<Location> free = new LinkedList<>();
         List<Location> adjacent = adjacentLocations(location);
@@ -128,7 +136,7 @@ public class Grid
             }
         }
         return free;
-    }
+    }*/
     
     /**
      * Try to find a free location that is adjacent to the
@@ -138,7 +146,7 @@ public class Grid
      * @param location The location from which to generate an adjacency.
      * @return A valid location within the grid area.
      */
-    public Location freeAdjacentLocation(Location location)
+    /*public Location freeAdjacentLocation(Location location)
     {
         // The available free ones.
         List<Location> free = getFreeAdjacentLocations(location);
@@ -148,7 +156,7 @@ public class Grid
         else {
             return null;
         }
-    }
+    }*/
 
     /**
      * Return a shuffled list of locations adjacent to the given one.
@@ -157,22 +165,27 @@ public class Grid
      * @param location The location from which to generate adjacencies.
      * @return A list of locations adjacent to that given.
      */
-    public List<Location> adjacentLocations(Location location)
+    /*public List<Location> adjacentLocations(Location location)
     {
         assert location != null : "Null location passed to adjacentLocations";
         // The list of locations to be returned.
         List<Location> locations = new LinkedList<>();
         if(location != null) {
-            int row = location.getRow();
-            int col = location.getCol();
+            int row = location.getX();
+            int col = location.getY();
             for(int roffset = -1; roffset <= 1; roffset++) {
                 int nextRow = row + roffset;
-                if(nextRow >= 0 && nextRow < depth) {
+                if(nextRow >= 0 && nextRow < x) {
                     for(int coffset = -1; coffset <= 1; coffset++) {
                         int nextCol = col + coffset;
                         // Exclude invalid locations and the original location.
-                        if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
+<<<<<<< HEAD
+                        if(nextCol >= 0 && nextCol < y && (roffset != 0 || coffset != 0)) {
                             locations.add(new Location(nextRow, nextCol));
+=======
+                        if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
+                            locations.add(new Location(nextRow, nextCol, 0));
+>>>>>>> 9a451f6ce5af632bffc9cefa6965e7262148e0b9
                         }
                     }
                 }
@@ -183,7 +196,7 @@ public class Grid
            // Collections.shuffle(locations, rand;  TODO
         }
         return locations;
-    }
+    }*/
 
     /**
      * Return the depth of the field.
@@ -191,7 +204,7 @@ public class Grid
      */
     public int getDepth()
     {
-        return depth;
+        return x;
     }
     
     /**
@@ -200,6 +213,11 @@ public class Grid
      */
     public int getWidth()
     {
-        return width;
+        return y;
+    }
+    
+    public int getHeight()
+    {
+        return z;
     }
 }

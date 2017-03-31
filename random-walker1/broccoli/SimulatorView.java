@@ -26,7 +26,7 @@ public class SimulatorView extends JFrame
     private final String STEP_PREFIX = "Step: ";
     private final String POPULATION_PREFIX = "Population: ";
     private final JLabel stepLabel, population;
-    private final FieldView fieldView;
+    private final GridView gridView;
     
     // A map for storing colors for participants in the simulation
     private final Map<Class, Color> colors;
@@ -43,17 +43,17 @@ public class SimulatorView extends JFrame
         stats = new GridStats();
         colors = new LinkedHashMap<>();
 
-        setTitle("Fox and Rabbit Simulation");
+        setTitle("Particle Simulation");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
         population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         
         setLocation(100, 50);
         
-        fieldView = new FieldView(height, width);
+        gridView = new GridView(height, width);
 
         Container contents = getContentPane();
         contents.add(stepLabel, BorderLayout.NORTH);
-        contents.add(fieldView, BorderLayout.CENTER);
+        contents.add(gridView, BorderLayout.CENTER);
         contents.add(population, BorderLayout.SOUTH);
         pack();
         setVisible(true);
@@ -61,20 +61,20 @@ public class SimulatorView extends JFrame
     
     /**
      * Define a color to be used for a given class of animal.
-     * @param animalClass The animal's Class object.
+     * @param particleClass The animal's Class object.
      * @param color The color to be used for the given class.
      */
-    public void setColor(Class animalClass, Color color)
+    public void setColor(Class particleClass, Color color)
     {
-        colors.put(animalClass, color);
+        colors.put(particleClass, color);
     }
 
     /**
      * @return The color to be used for a given class of animal.
      */
-    private Color getColor(Class animalClass)
+    private Color getColor(Class particleClass)
     {
-        Color col = colors.get(animalClass);
+        Color col = colors.get(particleClass);
         if(col == null) {
             // no color defined for this class
             return UNKNOWN_COLOR;
@@ -98,24 +98,24 @@ public class SimulatorView extends JFrame
         stepLabel.setText(STEP_PREFIX + step);
         stats.reset();
         
-        fieldView.preparePaint();
+        gridView.preparePaint();
 
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 Object animal = field.getObjectAt(row, col);
                 if(animal != null) {
                     stats.incrementCount(animal.getClass());
-                    fieldView.drawMark(col, row, getColor(animal.getClass()));
+                    gridView.drawMark(col, row, getColor(animal.getClass()));
                 }
                 else {
-                    fieldView.drawMark(col, row, EMPTY_COLOR);
+                    gridView.drawMark(col, row, EMPTY_COLOR);
                 }
             }
         }
         stats.countFinished();
 
         population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
-        fieldView.repaint();
+        gridView.repaint();
     }
 
     /**
@@ -136,7 +136,7 @@ public class SimulatorView extends JFrame
      * This is rather advanced GUI stuff - you can ignore this 
      * for your project if you like.
      */
-    private class FieldView extends JPanel
+    private class GridView extends JPanel
     {
         private final int GRID_VIEW_SCALING_FACTOR = 6;
 
@@ -149,7 +149,7 @@ public class SimulatorView extends JFrame
         /**
          * Create a new FieldView component.
          */
-        public FieldView(int height, int width)
+        public GridView(int height, int width)
         {
             gridHeight = height;
             gridWidth = width;
@@ -174,7 +174,7 @@ public class SimulatorView extends JFrame
         {
             if(! size.equals(getSize())) {  // if the size has changed...
                 size = getSize();
-                fieldImage = fieldView.createImage(size.width, size.height);
+                fieldImage = gridView.createImage(size.width, size.height);
                 g = fieldImage.getGraphics();
 
                 xScale = size.width / gridWidth;
