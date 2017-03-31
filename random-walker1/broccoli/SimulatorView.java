@@ -87,9 +87,9 @@ public class SimulatorView extends JFrame
     /**
      * Show the current status of the field.
      * @param step Which iteration step it is.
-     * @param field The field whose status is to be displayed.
+     * @param grid The field whose status is to be displayed.
      */
-    public void showStatus(int step, Grid field)
+    public void showStatus(int step, Grid grid)
     {
         if(!isVisible()) {
             setVisible(true);
@@ -100,10 +100,10 @@ public class SimulatorView extends JFrame
         
         gridView.preparePaint();
 
-        for(int x = 0; x < field.getDepth(); x++) {
-            for(int y = 0; y < field.getWidth(); y++) {
-                for(int z = 0; z < field.getHeight(); z++) {
-                    Object particle = field.getObjectAt(x, y, z);
+        for(int x = 0; x < grid.getDepth(); x++) {
+            for(int y = 0; y < grid.getWidth(); y++) {
+                for(int z = 0; z < grid.getHeight(); z++) {
+                    Object particle = grid.getObjectAt(x, y, z);
                     if(particle != null) {
                         stats.incrementCount(particle.getClass());
                         gridView.drawMark(y, x, getColor(particle.getClass()));
@@ -116,7 +116,7 @@ public class SimulatorView extends JFrame
         }
         stats.countFinished();
 
-        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(grid));
         gridView.repaint();
     }
 
