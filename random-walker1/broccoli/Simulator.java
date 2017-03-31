@@ -121,7 +121,6 @@ public class Simulator
     
     public void populate(int numPartic)
     {
-        grid.clearAll();
         Location location = grid.getCenterLocation();
         for(int i = 0; i < numPartic; i++)
         {
