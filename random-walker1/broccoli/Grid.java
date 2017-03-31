@@ -102,6 +102,14 @@ public class Grid
     {
         return grid[x][y][z];
     }
+    public Object getObjectAtOne(int x)
+    {
+        return grid[x][0][0];
+    }
+    public Object getObjectAtTwo(int x, int y)
+    {
+        return grid[x][y][0];
+    }
     
     public Location getCenterLocation()
     {
@@ -109,6 +117,30 @@ public class Grid
         
         return new Location(0,0,0);
     }
+    
+    public Location getAdjacentLocations(int dimension)
+    {
+        int oneD = 1;
+        int twoD = 2;
+        int threeD = 3;
+        
+        
+        if(oneD == dimension)
+        {
+           getObjectAtOne(x);
+        }
+        if(twoD == dimension)
+        {
+            getObjectAtTwo(x, y);
+        }
+        if(threeD == dimension)
+        {
+           getObjectAt(x, y, z); 
+        }
+        
+        return null;
+    }
+    
     
     /**
      * Generate a random location that is adjacent to the
