@@ -6,7 +6,7 @@ import java.util.List;
  *
  * @author Vinh
  */
-public abstract class Particle {
+public class Particle {
     
     private final boolean inAction;
     
@@ -15,7 +15,10 @@ public abstract class Particle {
     private final Grid grid;
     
     // act
-    public abstract void act(List<Particle> newParticle);
+    public void act(List<Particle> newParticle)
+    {
+        System.out.println("sup");
+    }
     
     protected Particle(Grid grid, Location location)
     {
