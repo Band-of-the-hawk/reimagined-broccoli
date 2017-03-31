@@ -8,11 +8,11 @@ import java.util.List;
  */
 public abstract class Particle {
     
-    private boolean inAction;
+    private final boolean inAction;
     
     private Location location;
     
-    private Grid grid;
+    private final Grid grid;
     
     // act
     public abstract void act(List<Particle> newParticle);

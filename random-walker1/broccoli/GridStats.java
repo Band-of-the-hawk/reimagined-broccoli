@@ -1,6 +1,5 @@
 package broccoli;
 
-import java.awt.Color;
 import java.util.HashMap;
 
 /**
@@ -25,12 +24,13 @@ public class GridStats
     {
         // Set up a collection for counters for each type of animal that
         // we might find
-        counters = new HashMap<Class, Counter>();
+        counters = new HashMap<>();
         countsValid = true;
     }
 
     /**
      * Get details of what is in the field.
+     * @param grid
      * @return A string describing what is in the field.
      */
     public String getPopulationDetails(Grid grid)
@@ -89,6 +89,7 @@ public class GridStats
     /**
      * Determine whether the simulation is still viable.
      * I.e., should it continue to run.
+     * @param grid
      * @return true If there is more than one species alive.
      */
     public boolean isViable(Grid grid)

@@ -1,7 +1,6 @@
 package broccoli;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,13 +25,13 @@ public class SimulatorView extends JFrame
 
     private final String STEP_PREFIX = "Step: ";
     private final String POPULATION_PREFIX = "Population: ";
-    private JLabel stepLabel, population;
-    private FieldView fieldView;
+    private final JLabel stepLabel, population;
+    private final FieldView fieldView;
     
     // A map for storing colors for participants in the simulation
-    private Map<Class, Color> colors;
+    private final Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
-    private GridStats stats;
+    private final GridStats stats;
 
     /**
      * Create a view of the given width and height.
@@ -42,7 +41,7 @@ public class SimulatorView extends JFrame
     public SimulatorView(int height, int width)
     {
         stats = new GridStats();
-        colors = new LinkedHashMap<Class, Color>();
+        colors = new LinkedHashMap<>();
 
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
@@ -121,6 +120,7 @@ public class SimulatorView extends JFrame
 
     /**
      * Determine whether the simulation should continue to run.
+     * @param grid
      * @return true If there is more than one species alive.
      */
     public boolean isViable(Grid grid)
@@ -140,7 +140,7 @@ public class SimulatorView extends JFrame
     {
         private final int GRID_VIEW_SCALING_FACTOR = 6;
 
-        private int gridWidth, gridHeight;
+        private final int gridWidth, gridHeight;
         private int xScale, yScale;
         Dimension size;
         private Graphics g;
@@ -159,6 +159,7 @@ public class SimulatorView extends JFrame
         /**
          * Tell the GUI manager how big we would like to be.
          */
+        @Override
         public Dimension getPreferredSize()
         {
             return new Dimension(gridWidth * GRID_VIEW_SCALING_FACTOR,
@@ -200,6 +201,7 @@ public class SimulatorView extends JFrame
          * The field view component needs to be redisplayed. Copy the
          * internal image to screen.
          */
+        @Override
         public void paintComponent(Graphics g)
         {
             if(fieldImage != null) {

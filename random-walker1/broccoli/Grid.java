@@ -1,10 +1,7 @@
 package broccoli;
 
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Represent a rectangular grid of field positions.
@@ -19,9 +16,9 @@ public class Grid
     //private static final Random rand = Randomizer.getRandom(); TODO
     
     // The depth and width of the field.
-    private int depth, width;
+    private final int depth, width;
     // Storage for the animals.
-    private Object[][] field;
+    private final Object[][] field;
 
     /**
      * Represent a field of the given dimensions.
@@ -123,7 +120,7 @@ public class Grid
      */
     public List<Location> getFreeAdjacentLocations(Location location)
     {
-        List<Location> free = new LinkedList<Location>();
+        List<Location> free = new LinkedList<>();
         List<Location> adjacent = adjacentLocations(location);
         for(Location next : adjacent) {
             if(getObjectAt(next) == null) {
@@ -164,7 +161,7 @@ public class Grid
     {
         assert location != null : "Null location passed to adjacentLocations";
         // The list of locations to be returned.
-        List<Location> locations = new LinkedList<Location>();
+        List<Location> locations = new LinkedList<>();
         if(location != null) {
             int row = location.getRow();
             int col = location.getCol();

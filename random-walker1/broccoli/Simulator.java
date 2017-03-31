@@ -1,6 +1,5 @@
 package broccoli;
 
-import java.awt.Color;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -90,7 +89,7 @@ public class Simulator
      */
     public void simulate(int numSteps)
     {
-        for(int step = 1; step <= numSteps && view.isViable(grid); step++) {
+        for(int stepNum = 1; stepNum <= numSteps && view.isViable(grid); stepNum++) {
             simulateOneStep();
         }
     }
@@ -106,9 +105,9 @@ public class Simulator
         step++;
         List<Particle> newParticle = new ArrayList<>();
         for(Iterator<Particle> it = particle.iterator(); it.hasNext(); ) {
-            Particle particle = it.next();
-            particle.act(newParticle);
-            if(! particle.isInAction()) {
+            Particle p = it.next();
+            p.act(newParticle);
+            if(! p.isInAction()) {
                 it.remove();
             }
         }

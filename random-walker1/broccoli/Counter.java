@@ -1,6 +1,5 @@
 package broccoli;
 
-import java.awt.Color;
 
 /**
  * @author Vinh
@@ -8,7 +7,7 @@ import java.awt.Color;
 public class Counter
 {
     // A name for this type of simulation participant
-    private String name;
+    private final String name;
     // How many of this type exist in the simulation.
     private int count;
 
