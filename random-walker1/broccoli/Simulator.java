@@ -199,7 +199,7 @@ public class Simulator
         {
             for(int iDepth = 0; iDepth < depth; iDepth++)
             {
-                Object objSelected = grid.getObjectAt(new Location(iDepth, iWidth));
+                Object objSelected = grid.getObjectAt(new Location(iDepth, iWidth, 0));
                 if(objSelected != null)
                 {
                     if(objSelected instanceof Particle)

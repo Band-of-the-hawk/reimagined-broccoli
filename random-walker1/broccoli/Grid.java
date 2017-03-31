@@ -52,7 +52,7 @@ public class Grid
      */
     public void clear(Location location)
     {
-        grid[location.getRow()][location.getCol()] = null;
+        grid[location.getX()][location.getY()][location.getZ()] = null;
     }
     
     /**
@@ -65,7 +65,7 @@ public class Grid
      */
     public void place(Object particle, int row, int col)
     {
-        place(particle, new Location(row, col));
+        place(particle, new Location(row, col, 0));
     }
     
     /**
@@ -77,7 +77,7 @@ public class Grid
      */
     public void place(Object particle, Location location)
     {
-       grid[location.getRow()][location.getCol()] = particle;
+        grid[location.getX()][location.getY()][location.getZ()] = particle;
     }
     
     /**
@@ -87,7 +87,7 @@ public class Grid
      */
     public Object getObjectAt(Location location)
     {
-        return getObjectAt(location.getRow(), location.getCol());
+        return getObjectAt(location.getX(), location.getY());
     }
     
     /**
@@ -115,18 +115,18 @@ public class Grid
      * @param location The location from which to generate an adjacency.
      * @return A valid location within the grid area.
      */
-    public Location randomAdjacentLocation(Location location)
+    /*public Location randomAdjacentLocation(Location location)
     {
         List<Location> adjacent = adjacentLocations(location);
         return adjacent.get(0);
-    }
+    }*/
     
     /**
      * Get a shuffled list of the free adjacent locations.
      * @param location Get locations adjacent to this.
      * @return A list of free adjacent locations.
      */
-    public List<Location> getFreeAdjacentLocations(Location location)
+    /*public List<Location> getFreeAdjacentLocations(Location location)
     {
         List<Location> free = new LinkedList<>();
         List<Location> adjacent = adjacentLocations(location);
@@ -136,7 +136,7 @@ public class Grid
             }
         }
         return free;
-    }
+    }*/
     
     /**
      * Try to find a free location that is adjacent to the
@@ -146,7 +146,7 @@ public class Grid
      * @param location The location from which to generate an adjacency.
      * @return A valid location within the grid area.
      */
-    public Location freeAdjacentLocation(Location location)
+    /*public Location freeAdjacentLocation(Location location)
     {
         // The available free ones.
         List<Location> free = getFreeAdjacentLocations(location);
@@ -156,7 +156,7 @@ public class Grid
         else {
             return null;
         }
-    }
+    }*/
 
     /**
      * Return a shuffled list of locations adjacent to the given one.
@@ -165,22 +165,27 @@ public class Grid
      * @param location The location from which to generate adjacencies.
      * @return A list of locations adjacent to that given.
      */
-    public List<Location> adjacentLocations(Location location)
+    /*public List<Location> adjacentLocations(Location location)
     {
         assert location != null : "Null location passed to adjacentLocations";
         // The list of locations to be returned.
         List<Location> locations = new LinkedList<>();
         if(location != null) {
-            int row = location.getRow();
-            int col = location.getCol();
+            int row = location.getX();
+            int col = location.getY();
             for(int roffset = -1; roffset <= 1; roffset++) {
                 int nextRow = row + roffset;
                 if(nextRow >= 0 && nextRow < x) {
                     for(int coffset = -1; coffset <= 1; coffset++) {
                         int nextCol = col + coffset;
                         // Exclude invalid locations and the original location.
+<<<<<<< HEAD
                         if(nextCol >= 0 && nextCol < y && (roffset != 0 || coffset != 0)) {
                             locations.add(new Location(nextRow, nextCol));
+=======
+                        if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
+                            locations.add(new Location(nextRow, nextCol, 0));
+>>>>>>> 9a451f6ce5af632bffc9cefa6965e7262148e0b9
                         }
                     }
                 }
@@ -191,7 +196,7 @@ public class Grid
            // Collections.shuffle(locations, rand;  TODO
         }
         return locations;
-    }
+    }*/
 
     /**
      * Return the depth of the field.
