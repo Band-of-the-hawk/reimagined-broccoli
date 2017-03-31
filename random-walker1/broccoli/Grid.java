@@ -1,11 +1,8 @@
 package broccoli;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
- * Represent a rectangular grid of field positions.
- * Each position is able to store a single animal.
+ * Represent a grid of field positions.
+ * Each position is able to store a single object.
  * 
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
