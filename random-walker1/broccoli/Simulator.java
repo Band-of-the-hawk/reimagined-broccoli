@@ -101,7 +101,7 @@ public class Simulator
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act();
-            System.out.println("Particle " + p.getNumber() + " done acting");
+            System.out.println("Particle " + p.getNumber() + " done acting"); //DEBUGGING
         }
 
         //view.showStatus(step, grid);
@@ -126,7 +126,7 @@ public class Simulator
         {
             Particle p = new Particle(grid, location, i);
             particles.add(p);
-            System.out.println("Added particle " + i);
+            System.out.println("Added particle " + i);  //DEBUGGING
         }
     }
 }

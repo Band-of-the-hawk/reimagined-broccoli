@@ -38,13 +38,13 @@ public class Particle
     public void act()
     {
         System.out.println("Particle b4 location: " + Integer.toString(x)
-                + " " + Integer.toString(y) + " " + Integer.toString(z));
+                + " " + Integer.toString(y) + " " + Integer.toString(z)); //DEBUGGING
         
         List<Location> adjLocations = grid.getAdjacentLocations(location);
         randomWalk(adjLocations);
         
         System.out.println("Particle after location: " + Integer.toString(x)
-                + " " + Integer.toString(y) + " " + Integer.toString(z));
+                + " " + Integer.toString(y) + " " + Integer.toString(z)); //DEBUGGING
     }
     
     private void randomWalk(List<Location> locations)
