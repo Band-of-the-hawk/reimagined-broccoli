@@ -102,10 +102,10 @@ public class SimulatorView extends JFrame
 
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
-                Object animal = field.getObjectAt(row, col);
-                if(animal != null) {
-                    stats.incrementCount(animal.getClass());
-                    gridView.drawMark(col, row, getColor(animal.getClass()));
+                Object particle = field.getObjectAt(row, col);
+                if(particle != null) {
+                    stats.incrementCount(particle.getClass());
+                    gridView.drawMark(col, row, getColor(particle.getClass()));
                 }
                 else {
                     gridView.drawMark(col, row, EMPTY_COLOR);
