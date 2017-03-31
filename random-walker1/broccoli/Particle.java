@@ -38,6 +38,9 @@ public class Particle
         int availableSize = locations.size();
         double randomIndex = Math.random() * availableSize;
         randomIndex = Math.floor(randomIndex);
+        int randIndex = Integer.parseInt(Double.toString(randomIndex));
+        
+        location = locations.get(randIndex);
     }
     
     /**

@@ -21,14 +21,14 @@ public class Main extends Application
     public static void main(String[] args)
     {
         launch(args);
-        Simulator simulator = new Simulator();
+        Simulator simulator = new Simulator(10, 0, 0);
         simulator.simulate(100);
     }
 
     @Override
     public void start(Stage stage) throws Exception
     {
-        this.stage = stage;
+        /*this.stage = stage;
         
         // SET SIZE
         stage.setMinHeight(360);
@@ -40,7 +40,7 @@ public class Main extends Application
         scene = new Scene(contentController());
         stage.setTitle("Diffusjon");
         stage.setScene(scene);
-        stage.show();
+        stage.show();*/
     }
     
     public Parent contentController()

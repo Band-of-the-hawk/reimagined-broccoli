@@ -13,9 +13,11 @@ public class Simulator
 {
     // Constants representing configuration information for the simulation.
     // The default width for the grid.
-    private static final int DEFAULT_WIDTH = 120;
+    private static final int DEFAULT_X = 10;
     // The default depth of the grid.
-    private static final int DEFAULT_DEPTH = 80;
+    private static final int DEFAULT_Y = 10;
+    // The default height of the grid.
+    private static final int DEFAULT_Z = 10;
 
      //TODO
     // Lists of animals in the field.
@@ -33,52 +35,45 @@ public class Simulator
      */
     public Simulator()
     {
-        this(DEFAULT_DEPTH, DEFAULT_WIDTH);
+        this(DEFAULT_Y, DEFAULT_X, DEFAULT_Z);
     }
     
     /**
      * Create a simulation field with the given size.
-     * @param depth Depth of the field. Must be greater than zero.
-     * @param width Width of the field. Must be greater than zero.
+     * @param x Depth of the field. Must be greater than zero.
+     * @param y Width of the field. Must be greater than zero.
+     * @param z
      */
-    public Simulator(int depth, int width)
+    public Simulator(int x, int y, int z)
     {
-        if(width <= 0 || depth <= 0) {
+        if(y < 0 || x < 0 || z < 0) {
             System.out.println("The dimensions must be greater than zero.");
             System.out.println("Using default values.");
-            depth = DEFAULT_DEPTH;
-            width = DEFAULT_WIDTH;
+            x = DEFAULT_Y;
+            y = DEFAULT_X;
+            z = DEFAULT_Z;
         }
         
         // TODO
         // Create a new ArrayList of animals.
         particles = new ArrayList<>();
         
-        // Create a new field with depth and width.
-        grid = new Grid(depth, width, 0);
+        // Create a new grid with depth and width.
+        if(x > 0 && y == 0 && z == 0) {
+            grid = new Grid(x);
+        } else if (x > 0 && y > 0 && z == 0) {
+            grid = new Grid(x,y);
+        } else if (x > 0 && y > 0 && z > 0) {
+            grid = new Grid(x, y, z);
+        } else {
+            grid = new Grid(DEFAULT_X, DEFAULT_Y, DEFAULT_Z);
+        }
 
         // Create a view of the state of each location in the field.
-        //view = new SimulatorView(depth, width);
-        
-        //TODO
-        // Create randomly populate in the field with foxes and rabbits.
-        //this.populationGenerator = new PopulationGenerator(grid, animals, view);
-        
-        // TODO
-        //Setting color on Animal(Rabbit, Fox)
-        //populationGenerator.setColors(Color.GREEN, Color.RED);
+        //view = new SimulatorView(x, y);
         
         // Setup a valid starting point.
         reset();
-    }
-    
-    /**
-     * Run the simulation from its current state for a reasonably long period,
-     * (4000 steps).
-     */
-    public void runLongSimulation()
-    {
-        simulate(4000);
     }
     
     /**
@@ -99,8 +94,6 @@ public class Simulator
      */
     public void simulateOneStep()
     {
-        
-        
         step++;
         List<Particle> newParticle = new ArrayList<>();
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
@@ -110,49 +103,28 @@ public class Simulator
                 it.remove();
             }*/
         }
-  
+
         particles.addAll(newParticle);
         //view.showStatus(step, grid);
-      
-    /*   
-        // Checking if the field is valid.
-            if(isFieldValid())
-            {
-                System.out.println("Field is valid");
-            }
-            else
-            {
-                System.out.println("Field is not valid");
-            }
-        // Checking if the list of the field is valid.
-            if(isListValid())
-            {
-                System.out.println("List is valid");
-            }
-            else
-            {
-                System.out.println("List is not valid");
-            }
-    */
     }
-        /**
+    
+    /**
      * Reset the simulation to a starting position.
      */
     public void reset()
     {
         step = 0;
         particles.clear();
-        populate(1);
                 
         // Show the starting state in the view.
         //view.showStatus(step, grid);
     }
     
-    private void populate(int nrParticles)
+    public void populate(int numPartic)
     {
         grid.clearAll();
         Location location = grid.getCenterLocation();
-        for(int i = 0; i < nrParticles; i++)
+        for(int i = 0; i < numPartic; i++)
         {
             Particle p = new Particle(grid, location);
             particles.add(p);
