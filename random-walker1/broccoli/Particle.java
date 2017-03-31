@@ -51,4 +51,10 @@ public class Particle {
         location = center;
         grid.place(this, center);
     }
+    
+    private void addParticle(List<Particle> newParticle)
+    {
+        Grid grid = getGrid();
+        
+    }
 }

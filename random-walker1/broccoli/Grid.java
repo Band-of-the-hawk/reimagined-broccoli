@@ -16,20 +16,22 @@ public class Grid
     //private static final Random rand = Randomizer.getRandom(); TODO
     
     // The depth and width of the field.
-    private final int depth, width;
+    private final int x, y, z;
     // Storage for the animals.
-    private final Object[][] field;
+    private final Object[][][] grid;
 
     /**
      * Represent a field of the given dimensions.
-     * @param depth The depth of the field.
-     * @param width The width of the field.
+     * @param x The depth of the field.
+     * @param y The width of the field.
+     * @param z
      */
-    public Grid(int depth, int width)
+    public Grid(int x, int y, int z)
     {
-        this.depth = depth;
-        this.width = width;
-        field = new Object[depth][width];
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        grid = new Object[x][y][z];
     }
     
     /**
@@ -37,9 +39,9 @@ public class Grid
      */
     public void clear()
     {
-        for(int row = 0; row < depth; row++) {
-            for(int col = 0; col < width; col++) {
-                field[row][col] = null;
+        for(int row = 0; row < x; row++) {
+            for(int col = 0; col < y; col++) {
+                grid[row][col] = null;
             }
         }
     }
@@ -50,32 +52,32 @@ public class Grid
      */
     public void clear(Location location)
     {
-        field[location.getRow()][location.getCol()] = null;
+        grid[location.getRow()][location.getCol()] = null;
     }
     
     /**
      * Place an animal at the given location.
      * If there is already an animal at the location it will
      * be lost.
-     * @param animal The animal to be placed.
+     * @param particle The animal to be placed.
      * @param row Row coordinate of the location.
      * @param col Column coordinate of the location.
      */
-    public void place(Object animal, int row, int col)
+    public void place(Object particle, int row, int col)
     {
-        place(animal, new Location(row, col));
+        place(particle, new Location(row, col));
     }
     
     /**
      * Place an animal at the given location.
      * If there is already an animal at the location it will
      * be lost.
-     * @param animal The animal to be placed.
+     * @param particle The animal to be placed.
      * @param location Where to place the animal.
      */
-    public void place(Object animal, Location location)
+    public void place(Object particle, Location location)
     {
-        field[location.getRow()][location.getCol()] = animal;
+       grid[location.getRow()][location.getCol()] = particle;
     }
     
     /**
@@ -96,7 +98,13 @@ public class Grid
      */
     public Object getObjectAt(int row, int col)
     {
-        return field[row][col];
+        return grid[row][col];
+    }
+    
+    public Location setCenterLocation(Location location)
+    {
+        
+        return null;
     }
     
     /**
@@ -167,11 +175,11 @@ public class Grid
             int col = location.getCol();
             for(int roffset = -1; roffset <= 1; roffset++) {
                 int nextRow = row + roffset;
-                if(nextRow >= 0 && nextRow < depth) {
+                if(nextRow >= 0 && nextRow < x) {
                     for(int coffset = -1; coffset <= 1; coffset++) {
                         int nextCol = col + coffset;
                         // Exclude invalid locations and the original location.
-                        if(nextCol >= 0 && nextCol < width && (roffset != 0 || coffset != 0)) {
+                        if(nextCol >= 0 && nextCol < y && (roffset != 0 || coffset != 0)) {
                             locations.add(new Location(nextRow, nextCol));
                         }
                     }
@@ -191,7 +199,7 @@ public class Grid
      */
     public int getDepth()
     {
-        return depth;
+        return x;
     }
     
     /**
@@ -200,6 +208,11 @@ public class Grid
      */
     public int getWidth()
     {
-        return width;
+        return y;
+    }
+    
+    public int getHeight()
+    {
+        return z;
     }
 }

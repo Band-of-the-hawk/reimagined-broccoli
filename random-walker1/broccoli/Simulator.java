@@ -56,7 +56,7 @@ public class Simulator
         particle = new ArrayList<>();
         
         // Create a new field with depth and width.
-        grid = new Grid(depth, width);
+        grid = new Grid(depth, width, 0);
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
@@ -154,7 +154,7 @@ public class Simulator
     /*
     private boolean isFieldValid()
     {
-       //ArrayList<Actor> animalsInField = getAnimalsInField();
+       ArrayList<Particle> animalsInField = getAnimalsInField();
         boolean result = true;
         
         for(Actor actor: animalsInField)
