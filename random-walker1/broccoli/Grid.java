@@ -39,9 +39,11 @@ public class Grid
      */
     public void clear()
     {
-        for(int row = 0; row < x; row++) {
-            for(int col = 0; col < y; col++) {
-                grid[row][col] = null;
+        for(int x = 0; x < this.x; x++) {
+            for(int y = 0; y < this.y; y++) {
+                for(int z = 0; z < this.z; z++) {
+                    grid[x][y][z] = null;
+                }
             }
         }
     }
