@@ -100,4 +100,9 @@ public class Particle
         y = location.getY();
         z = location.getZ();
     }
+    
+    public Location getLocation()
+    {
+        return this.location;
+    }
 }

@@ -140,7 +140,7 @@ public class Grid
      * Return the depth of the field.
      * @return The depth of the field.
      */
-    public int getDepth()
+    public int getXMax()
     {
         return x;
     }
@@ -149,7 +149,7 @@ public class Grid
      * Return the width of the field.
      * @return The width of the field.
      */
-    public int getWidth()
+    public int getYMax()
     {
         return y;
     }
@@ -158,7 +158,7 @@ public class Grid
      * Return the height of the field.
      * @return The height of the field.
      */
-    public int getHeight()
+    public int getZMax()
     {
         return z;
     }
