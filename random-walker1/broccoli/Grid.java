@@ -72,9 +72,9 @@ public class Grid
     {
         this.dim = dim;
         
-        this.x = 2*x;
-        this.y = 2*y;
-        this.z = 2*z;
+        this.x = x/2;
+        this.y = y/2;
+        this.z = z/2;
         
         this.gB = new GridBorder(logI);
         
@@ -87,7 +87,7 @@ public class Grid
      */
     public Location getCenterLocation()
     {
-        return new Location(x/2,y/2,z/2);
+        return new Location(0,0,0);
     }
     
     /**
