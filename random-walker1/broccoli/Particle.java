@@ -19,7 +19,7 @@ public class Particle
     
     private final Grid grid;
     
-    private final int number;
+    private final int serialNo;
     
     private final LogInfo logI;
     
@@ -27,14 +27,14 @@ public class Particle
      * 
      * @param grid
      * @param location 
-     * @param number the value of number 
+     * @param serialNo the value of serialNo 
      * @param logI 
      */
-    public Particle(Grid grid, Location location, int number, LogInfo logI)
+    public Particle(Grid grid, Location location, int serialNo, LogInfo logI)
     {
         this.grid = grid;
         setLocation(location);
-        this.number = number;
+        this.serialNo = serialNo;
         this.logI = logI;
     }
     
@@ -88,7 +88,7 @@ public class Particle
     
     public int getNumber()
     {
-        return number;
+        return serialNo;
     }
     
     /**

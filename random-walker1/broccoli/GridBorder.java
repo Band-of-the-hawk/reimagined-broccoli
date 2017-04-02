@@ -6,9 +6,11 @@ package broccoli;
  */
 public class GridBorder
   {
+    private final LogInfo logI;
     
-    public GridBorder()
+    public GridBorder(LogInfo logI)
     {
+        this.logI = logI;
     }
 
     public int checkBorder(int position, int limit)
