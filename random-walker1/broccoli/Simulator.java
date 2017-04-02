@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
+ * Represent a logic of the simulator
  * 
  * @author Thomas Todal, Vinh Tran, Kristoffer Martinsen
  * @version 2017.03.31
@@ -21,11 +22,12 @@ public class Simulator
     
     
 
-     //TODO
-    // Lists of animals in the field.
+    
+    // Lists of particles in the field.
     private List<Particle> particles;
     // The current state of the field.
     private Grid grid;
+    
     // The current step of the simulation.
     private int step;
     // A graphical view of the simulation.
