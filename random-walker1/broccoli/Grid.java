@@ -76,7 +76,7 @@ public class Grid
         this.y = 2*y;
         this.z = 2*z;
         
-        this.gB = new GridBorder();
+        this.gB = new GridBorder(logI);
         
         this.logI = logI;
     }

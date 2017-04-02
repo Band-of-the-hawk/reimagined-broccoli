@@ -105,6 +105,7 @@ public class Simulator
     public void simulateOneStep()
     {
         step++;
+        logI.setCurrentStep(step);
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act();
