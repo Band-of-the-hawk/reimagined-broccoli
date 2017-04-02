@@ -22,33 +22,26 @@ public class Grid
     
     // The depth, width and height of the field.
     private final int x, y, z;
+    
+    private final GridBorder gB;
 
     /**
      * Represent a field of the given dimensions.
      * @param x The depth of the field.
-     * @param y The width of the field.
-     * @param z The hight of the field.
      */
     public Grid(int x)
     {
-        this.dim = 1;
-        this.x = 2*x;
-        this.y = 0;
-        this.z = 0;
+        this(x, 0, 0, ONE_D);
     }
     
     /**
      * Represent a field of the given dimensions.
      * @param x The depth of the field.
      * @param y The width of the field.
-     * @param z The hight of the field.
      */
     public Grid(int x, int y)
     {
-        this.dim = 2;
-        this.x = 2*x;
-        this.y = 2*y;
-        this.z = 0;
+        this(x, y, 0, TWO_D);
     }
     
     /**
@@ -59,10 +52,25 @@ public class Grid
      */
     public Grid(int x, int y, int z)
     {
-        this.dim = 3;
+        this(x, y, z, THREE_D);
+    }
+    
+    /**
+     * Represent a field of the given dimensions.
+     * @param x The depth of the field.
+     * @param y The width of the field.
+     * @param z The height of the field.
+     * @param dim The dimension of the grid.
+     */
+    public Grid(int x, int y, int z, int dim)
+    {
+        this.dim = dim;
+        
         this.x = 2*x;
         this.y = 2*y;
         this.z = 2*z;
+        
+        this.gB = new GridBorder();
     }
     
     /**
@@ -84,14 +92,14 @@ public class Grid
     {
         List<Location> adjLocations = new LinkedList<>();
         int xLoc = location.getX();
-        int xLocPlus = location.getX() + 1;
-        int xLocMinus = location.getX() - 1;
+        int xLocPlus = gB.checkBorder(location.getX() + 1, x);
+        int xLocMinus = gB.checkBorder(location.getX() - 1, x);
         int yLoc = location.getY();
-        int yLocPlus = location.getY() + 1;
-        int yLocMinus = location.getY() - 1;
+        int yLocPlus = gB.checkBorder(location.getY() + 1, y);
+        int yLocMinus = gB.checkBorder(location.getY() - 1, y);
         int zLoc = location.getZ();
-        int zLocPlus = location.getZ() + 1;
-        int zLocMinus = location.getZ() - 1;
+        int zLocPlus = gB.checkBorder(location.getZ() + 1, z);
+        int zLocMinus = gB.checkBorder(location.getZ() - 1, z);
         
         
         
