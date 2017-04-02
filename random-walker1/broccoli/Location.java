@@ -3,8 +3,8 @@ package broccoli;
 /**
  * Represent a location in a rectangular grid.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
+ * @author Vinh Tran, Thomas Todal, Kristoffer Martinsen
+ * @version 31.03.2017
  */
 public class Location
 {
@@ -15,7 +15,7 @@ public class Location
 
     /**
      * Represent a row and column.
-     * @param x The row.
+     * @param x The depth.
      */
     public Location(int x)
     {
@@ -26,8 +26,8 @@ public class Location
     
     /**
      * Represent a row and column.
-     * @param x The row.
-     * @param y The column.
+     * @param x The depth.
+     * @param y The width.
      */
     public Location(int x, int y)
     {
@@ -37,10 +37,10 @@ public class Location
     }
     
     /**
-     * Represent a row and column.
-     * @param x The row.
-     * @param y The column.
-     * @param z
+     * Represent a depth, width and height
+     * @param x The depth.
+     * @param y The width.
+     * @param z The height
      */
     public Location(int x, int y, int z)
     {
@@ -88,7 +88,8 @@ public class Location
     }
     
     /**
-     * @return The row.
+     * The depth of the field
+     * @return The depth of the field
      */
     public int getX()
     {
@@ -96,7 +97,8 @@ public class Location
     }
     
     /**
-     * @return The column.
+     * The width of the field
+     * @return The width of the field
      */
     public int getY()
     {
@@ -104,8 +106,8 @@ public class Location
     }
     
     /**
-     * 
-     * @return 
+     * The hight of the field
+     * @return The hight of the field
      */
     public int getZ()
     {

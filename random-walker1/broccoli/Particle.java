@@ -3,8 +3,10 @@ package broccoli;
 import java.util.List;
 
 /**
- *
- * @author Vinh
+ * Represent the particle list
+ * 
+ * @author Vinh Tran, Thomas Todal, Kristoffer Martinsen
+ * @version 31.03.2017
  */
 public class Particle
 {
@@ -33,6 +35,7 @@ public class Particle
     }
     
     /**
+     * An act function which make control where the function moves.
      * 
      */
     public void act()
@@ -47,6 +50,10 @@ public class Particle
                 + " " + Integer.toString(y) + " " + Integer.toString(z)); //DEBUGGING
     }
     
+    /**
+     * Represent the random walk of a particle.
+     * @param locations 
+     */
     private void randomWalk(List<Location> locations)
     {
         int availableSize = locations.size();
@@ -81,7 +88,7 @@ public class Particle
     }
     
     /**
-     * 
+     * Set the location of the particle
      * @param loc 
      */
     private void setLocation(Location loc)
