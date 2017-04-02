@@ -22,6 +22,10 @@ public class Simulator
     
     // Log info field to gather all the logging data.
     private final LogInfo logI;
+    
+    //Logger
+    private final Logger particleLog;
+    private final Logger stepLog;
 
     
     // Lists of particles in the field.
@@ -65,6 +69,9 @@ public class Simulator
         // Create the LogInfo object.
         this.logI = new LogInfo();
         
+        this.particleLog = new Logger("particleposition");
+        this.stepLog = new Logger("step-log");
+        
         // Create a new grid with depth and width.
         if(x > 0 && y == 0 && z == 0) {
             grid = new Grid(x, logI);
@@ -96,6 +103,8 @@ public class Simulator
         for(int stepNum = 1; stepNum <= numSteps /*&& view.isViable(grid)*/; stepNum++) {
             simulateOneStep();
         }
+        particleLog.writeToFile();
+        stepLog.writeToFile();
     }
     
     /**
@@ -109,8 +118,9 @@ public class Simulator
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act();
-            System.out.println("Particle " + p.getNumber() + " done acting"); //DEBUGGING
+            particleLog.addMessage(gatherParticleData(p));
         }
+        //stepLog.addMessage(gatherStepData());
 
         //view.showStatus(step, grid);
     }
@@ -136,5 +146,37 @@ public class Simulator
             particles.add(p);
             System.out.println("Added particle " + i);  //DEBUGGING
         }
+    }
+    
+    private String gatherParticleData(Particle part)
+    {
+        String csvLine = "";
+        csvLine += Integer.toString(step) + ",";
+        csvLine += Integer.toString(part.getNumber()) + ",";
+        csvLine += part.getLocation().toString() + ",";
+        
+        return csvLine;
+    }
+    
+    
+    private String gatherStepData()
+    {
+        String csvLine = "";
+        
+        
+        int gridX = grid.getXMax();
+        int gridY = grid.getYMax();
+        int gridZ = grid.getZMax();
+        for(int x = -gridX; x <= gridX; x++) {
+            for(int y = -gridY; y <= gridY; y++) {
+                for(int z = -gridZ; z <= gridZ; z++) {
+                    
+                }
+            }
+        }
+        
+        csvLine += Integer.toString(step);
+        
+        return csvLine;
     }
 }
