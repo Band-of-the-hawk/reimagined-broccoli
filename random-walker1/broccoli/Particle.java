@@ -21,17 +21,21 @@ public class Particle
     
     private final int number;
     
+    private final LogInfo logI;
+    
     /**
      * 
      * @param grid
      * @param location 
      * @param number the value of number 
+     * @param logI 
      */
-    public Particle(Grid grid, Location location, int number)
+    public Particle(Grid grid, Location location, int number, LogInfo logI)
     {
         this.grid = grid;
         setLocation(location);
         this.number = number;
+        this.logI = logI;
     }
     
     /**

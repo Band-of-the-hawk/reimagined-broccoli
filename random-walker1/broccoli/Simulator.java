@@ -20,7 +20,8 @@ public class Simulator
     // The default height of the grid.
     private static final int DEFAULT_Z = 10;
     
-    
+    // Log info field to gather all the logging data.
+    private final LogInfo logI;
 
     
     // Lists of particles in the field.
@@ -61,16 +62,20 @@ public class Simulator
         // Create a new ArrayList of particles.
         particles = new ArrayList<>();
         
+        // Create the LogInfo object.
+        this.logI = new LogInfo();
+        
         // Create a new grid with depth and width.
         if(x > 0 && y == 0 && z == 0) {
-            grid = new Grid(x);
+            grid = new Grid(x, logI);
         } else if (x > 0 && y > 0 && z == 0) {
-            grid = new Grid(x,y);
+            grid = new Grid(x, y, logI);
         } else if (x > 0 && y > 0 && z > 0) {
-            grid = new Grid(x, y, z);
+            grid = new Grid(x, y, z, logI);
         } else {
-            grid = new Grid(DEFAULT_X, DEFAULT_Y, DEFAULT_Z);
+            grid = new Grid(DEFAULT_X, DEFAULT_Y, DEFAULT_Z, logI);
         }
+        
 
         // Create a view of the state of each location in the field.
         //view = new SimulatorView(x, y);
@@ -126,7 +131,7 @@ public class Simulator
         Location location = grid.getCenterLocation();
         for(int i = 0; i < numPartic; i++)
         {
-            Particle p = new Particle(grid, location, i);
+            Particle p = new Particle(grid, location, i, logI);
             particles.add(p);
             System.out.println("Added particle " + i);  //DEBUGGING
         }

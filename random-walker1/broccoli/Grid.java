@@ -24,24 +24,28 @@ public class Grid
     private final int x, y, z;
     
     private final GridBorder gB;
+    
+    private final LogInfo logI;
 
     /**
      * Represent a field of the given dimensions.
      * @param x The depth of the field.
+     * @param logI
      */
-    public Grid(int x)
+    public Grid(int x, LogInfo logI)
     {
-        this(x, 0, 0, ONE_D);
+        this(x, 0, 0, ONE_D, logI);
     }
     
     /**
      * Represent a field of the given dimensions.
      * @param x The depth of the field.
      * @param y The width of the field.
+     * @param logI
      */
-    public Grid(int x, int y)
+    public Grid(int x, int y, LogInfo logI)
     {
-        this(x, y, 0, TWO_D);
+        this(x, y, 0, TWO_D, logI);
     }
     
     /**
@@ -49,10 +53,11 @@ public class Grid
      * @param x The depth of the field.
      * @param y The width of the field.
      * @param z The height of the field.
+     * @param logI
      */
-    public Grid(int x, int y, int z)
+    public Grid(int x, int y, int z, LogInfo logI)
     {
-        this(x, y, z, THREE_D);
+        this(x, y, z, THREE_D, logI);
     }
     
     /**
@@ -61,8 +66,9 @@ public class Grid
      * @param y The width of the field.
      * @param z The height of the field.
      * @param dim The dimension of the grid.
+     * @param logI
      */
-    public Grid(int x, int y, int z, int dim)
+    public Grid(int x, int y, int z, int dim, LogInfo logI)
     {
         this.dim = dim;
         
@@ -71,6 +77,8 @@ public class Grid
         this.z = 2*z;
         
         this.gB = new GridBorder();
+        
+        this.logI = logI;
     }
     
     /**
