@@ -44,7 +44,7 @@ public class Simulator
      */
     public Simulator()
     {
-        this(DEFAULT_Y, DEFAULT_X, DEFAULT_Z);
+        this(DEFAULT_X, DEFAULT_Y, DEFAULT_Z);
     }
     
     /**
@@ -55,11 +55,11 @@ public class Simulator
      */
     public Simulator(int x, int y, int z)
     {
-        if(y < 0 || x < 0 || z < 0) {
+        if(x < 1 || y < 0 || z < 0) {
             System.out.println("The dimensions must be greater than zero.");
             System.out.println("Using default values.");
-            x = DEFAULT_Y;
-            y = DEFAULT_X;
+            x = DEFAULT_X;
+            y = DEFAULT_Y;
             z = DEFAULT_Z;
         }
         
@@ -71,6 +71,7 @@ public class Simulator
         
         this.particleLog = new Logger("particleposition");
         this.stepLog = new Logger("step-log");
+        particleLog.addMessage("Step,Particle,x,y,z,");
         
         // Create a new grid with depth and width.
         if(x > 0 && y == 0 && z == 0) {

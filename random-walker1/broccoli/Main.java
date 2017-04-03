@@ -22,9 +22,9 @@ public class Main /*extends Application*/
     public static void main(String[] args)
     {
         //launch(args);
-        Simulator simulator = new Simulator(10, 10, 10);
-        simulator.populate(10);
-        simulator.simulate(500);
+        Simulator simulator = new Simulator(10000, 10000, 10000);
+        simulator.populate(10000);
+        simulator.simulate(2000);
     }
 
     /*@Override
