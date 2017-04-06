@@ -71,7 +71,7 @@ public class Simulator
         
         this.particleLog = new Logger("particleposition");
         this.stepLog = new Logger("step-log");
-        //particleLog.addMessage("Step,Particle,x,y,z,");
+        //particleLog.addLine("Step,Particle,x,y,z,");
         
         // Create a new grid with depth and width.
         if(x > 0 && y == 0 && z == 0) {
@@ -119,9 +119,9 @@ public class Simulator
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act();
-            particleLog.addMessage(gatherParticleData(p));
+            particleLog.addLine(gatherParticleData(p));
         }
-        //stepLog.addMessage(gatherStepData());
+        //stepLog.addLine(gatherStepData());
 
         //view.showStatus(step, grid);
     }
