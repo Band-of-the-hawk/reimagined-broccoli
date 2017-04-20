@@ -68,7 +68,7 @@ public class Grid
      * @param dim The dimension of the grid.
      * @param logI
      */
-    public Grid(int x, int y, int z, int dim, LogInfo logI)
+    private Grid(int x, int y, int z, int dim, LogInfo logI)
     {
         this.dim = dim;
         
@@ -140,7 +140,7 @@ public class Grid
      * Return the depth of the field.
      * @return The depth of the field.
      */
-    public int getXMax()
+    public int getXDepth()
     {
         return x;
     }
@@ -149,7 +149,7 @@ public class Grid
      * Return the width of the field.
      * @return The width of the field.
      */
-    public int getYMax()
+    public int getYWidth()
     {
         return y;
     }
@@ -158,7 +158,7 @@ public class Grid
      * Return the height of the field.
      * @return The height of the field.
      */
-    public int getZMax()
+    public int getZHeight()
     {
         return z;
     }

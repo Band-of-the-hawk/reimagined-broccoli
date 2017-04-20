@@ -165,9 +165,9 @@ public class Simulator
         String csvLine = "";
         
         
-        int gridX = grid.getXMax();
-        int gridY = grid.getYMax();
-        int gridZ = grid.getZMax();
+        int gridX = grid.getXDepth();
+        int gridY = grid.getYWidth();
+        int gridZ = grid.getZHeight();
         for(int x = -gridX; x <= gridX; x++) {
             for(int y = -gridY; y <= gridY; y++) {
                 for(int z = -gridZ; z <= gridZ; z++) {
