@@ -155,6 +155,7 @@ public class Simulator
         csvLine += Integer.toString(step) + ",";
         csvLine += Integer.toString(part.getNumber()) + ",";
         csvLine += part.getLocation().toString() + ",";
+        csvLine += getRootMeanSquare(part) + ",";
         
         return csvLine;
     }
@@ -179,5 +180,18 @@ public class Simulator
         csvLine += Integer.toString(step);
         
         return csvLine;
+    }
+    
+    private String getRootMeanSquare(Particle part)
+    {
+        String rMS = "";
+        
+        int xi = part.getLocation().getX();
+        int yi = part.getLocation().getY();
+        int zi = part.getLocation().getZ();
+        
+        rMS += Integer.toString(xi*xi + yi*yi + zi*zi);
+        
+        return rMS;
     }
 }
