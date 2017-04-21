@@ -16,6 +16,7 @@ public class Logger
     
     private BufferedWriter writer;
     private final ArrayList<String> messageList;
+    private String thisLine;
 
     /**
      * 
@@ -29,16 +30,35 @@ public class Logger
         } catch (IOException io) {
             System.out.println(io.getMessage());
         }
-
+        
+        this.thisLine = "";
+    }
+    
+    /**
+     * 
+     * @param line 
+     */
+    public void addLine(String line)
+    {
+        this.messageList.add(line + "\n");
     }
     
     /**
      * 
      * @param message 
      */
-    public void addMessage(String message)
+    public void addToLine(String message)
     {
-        this.messageList.add(message + "\n");
+        this.thisLine += message + ",";
+    }
+    
+    /**
+     * 
+     */
+    public void endLine()
+    {
+        this.messageList.add(thisLine);
+        this.thisLine = "";
     }
 
     /**

@@ -22,6 +22,10 @@ public class Simulator
     
     // Log info field to gather all the logging data.
     private final LogInfo logI;
+    
+    //Logger
+    private final Logger particleLog;
+    private final Logger stepLog;
 
     
     // Lists of particles in the field.
@@ -40,7 +44,7 @@ public class Simulator
      */
     public Simulator()
     {
-        this(DEFAULT_Y, DEFAULT_X, DEFAULT_Z);
+        this(DEFAULT_X, DEFAULT_Y, DEFAULT_Z);
     }
     
     /**
@@ -51,11 +55,11 @@ public class Simulator
      */
     public Simulator(int x, int y, int z)
     {
-        if(y < 0 || x < 0 || z < 0) {
+        if(x < 1 || y < 0 || z < 0) {
             System.out.println("The dimensions must be greater than zero.");
             System.out.println("Using default values.");
-            x = DEFAULT_Y;
-            y = DEFAULT_X;
+            x = DEFAULT_X;
+            y = DEFAULT_Y;
             z = DEFAULT_Z;
         }
         
@@ -64,6 +68,10 @@ public class Simulator
         
         // Create the LogInfo object.
         this.logI = new LogInfo();
+        
+        this.particleLog = new Logger("particleposition");
+        this.stepLog = new Logger("step-log");
+        //particleLog.addLine("Step,Particle,x,y,z,");
         
         // Create a new grid with depth and width.
         if(x > 0 && y == 0 && z == 0) {
@@ -96,6 +104,8 @@ public class Simulator
         for(int stepNum = 1; stepNum <= numSteps /*&& view.isViable(grid)*/; stepNum++) {
             simulateOneStep();
         }
+        particleLog.writeToFile();
+        stepLog.writeToFile();
     }
     
     /**
@@ -109,8 +119,9 @@ public class Simulator
         for(Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
             p.act();
-            System.out.println("Particle " + p.getNumber() + " done acting"); //DEBUGGING
+            particleLog.addLine(gatherParticleData(p));
         }
+        //stepLog.addLine(gatherStepData());
 
         //view.showStatus(step, grid);
     }
@@ -136,5 +147,51 @@ public class Simulator
             particles.add(p);
             System.out.println("Added particle " + i);  //DEBUGGING
         }
+    }
+    
+    private String gatherParticleData(Particle part)
+    {
+        String csvLine = "";
+        csvLine += Integer.toString(step) + ",";
+        csvLine += Integer.toString(part.getNumber()) + ",";
+        csvLine += part.getLocation().toString() + ",";
+        csvLine += getRootMeanSquare(part) + ",";
+        
+        return csvLine;
+    }
+    
+    
+    private String gatherStepData()
+    {
+        String csvLine = "";
+        
+        
+        int gridX = grid.getXDepth();
+        int gridY = grid.getYWidth();
+        int gridZ = grid.getZHeight();
+        for(int x = -gridX; x <= gridX; x++) {
+            for(int y = -gridY; y <= gridY; y++) {
+                for(int z = -gridZ; z <= gridZ; z++) {
+                    
+                }
+            }
+        }
+        
+        csvLine += Integer.toString(step);
+        
+        return csvLine;
+    }
+    
+    private String getRootMeanSquare(Particle part)
+    {
+        String rMS = "";
+        
+        int xi = part.getLocation().getX();
+        int yi = part.getLocation().getY();
+        int zi = part.getLocation().getZ();
+        
+        rMS += Integer.toString(xi*xi + yi*yi + zi*zi);
+        
+        return rMS;
     }
 }

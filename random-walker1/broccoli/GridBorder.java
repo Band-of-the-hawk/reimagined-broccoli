@@ -18,7 +18,7 @@ public class GridBorder
         if (position > limit) {
             return limit;
         } else if (position < -limit) {
-            return 0;
+            return -limit;
         } else {
             return position;
         }
