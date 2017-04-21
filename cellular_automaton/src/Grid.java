@@ -1,4 +1,6 @@
+package src;
 import java.util.ArrayList;
+
 
 /**
  * Created by Kristoffer on 02.04.2017.
@@ -6,56 +8,54 @@ import java.util.ArrayList;
 public class Grid {
 
     private final int WIDTH, HEIGHT, DEPTH;
-    private int x;
-    private int y;
-    private int z;
-    private String grid[][][];
-    private GridCell gridCell;
+    private GridCell grid[][][];
+    //private GridCell gridCell;
     private ArrayList<GridCell> adjacentCell;
 
     public Grid (int width, int height, int depth) {
         this.WIDTH = width;
         this.HEIGHT = height;
         this.DEPTH = depth;
+        this.grid = new GridCell[WIDTH][HEIGHT][DEPTH];
 
         adjacentCell = new ArrayList<>();
     }
 
-    public void setCenter() {
-        setLocation(0, 0, 0);
+    public Boolean getCellState(int x, int y, int z) {
+        return grid[x][y][z].getState();
     }
 
-    public void setLocation(int xPos, int yPos, int zPos) {
-        x = xPos;
-        y = yPos;
-        z = zPos;
-    }
-
-    public String getCellState(int x, int y, int z) {
-        return gridCell.getState();
-    }
 
     public void fillGrid() {
         for(int x = 0; x < WIDTH; x++) {
             for(int y = 0; y < HEIGHT; y++) {
-                for (int z = 0; z < DEPTH; z++) {
-                    gridCell.setState("Empty");
+                for(int z = 0; z < DEPTH; z++) {
+                    grid[x][y][z] = new GridCell();
                 }
             }
         }
     }
 
-    public int getWIDTH() {
-        return WIDTH;
+    public void setGrid() {
+        for(int x = 0; x < WIDTH; x++) {
+            for(int y = 0; y < HEIGHT; y++) {
+                for(int z = 0; z < DEPTH; z++) {
+                    grid[x][y][z].setState(false);
+                }
+            }
+        }
     }
 
-    public int getHEIGHT() {
-        return HEIGHT;
+    public void dummyCheckGrid() {
+        for(int x = 0; x < WIDTH; x++) {
+            for(int y = 0; y < HEIGHT; y++) {
+                for(int z = 0; z < DEPTH; z++) {
+                    System.out.println("x: " + x
+                            + "y: " + y
+                            + "z: " + z
+                            + "--> " + grid[x][y][z].getState());
+                }
+            }
+        }
     }
-
-    public int getDEPTH() {
-        return DEPTH;
-    }
-
-
 }
