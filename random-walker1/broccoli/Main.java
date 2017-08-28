@@ -23,8 +23,8 @@ public class Main /*extends Application*/
     {
         //launch(args);
         Simulator simulator = new Simulator(20, 20, 20);
-        simulator.populate(1);
-        simulator.simulate(1000);
+        simulator.populate(1000);
+        simulator.simulate(10000);
     }
 
     /*@Override
